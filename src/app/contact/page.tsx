@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "首页",
+  title: "联系我们",
 };
 
-export default function HomePage() {
+export default function ContactPage() {
   return (
     <main className="flex min-h-[60vh] items-center bg-[#f7f2e8] px-5 py-20 sm:px-8">
       <div className="mx-auto w-full max-w-7xl">
@@ -12,7 +12,7 @@ export default function HomePage() {
           YOUMEGA
         </p>
         <h1 className="text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
-          首页
+          联系我们
         </h1>
         <p className="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
           本页面内容将在后续课程完善
