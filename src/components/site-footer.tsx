@@ -35,12 +35,23 @@ export function SiteFooter() {
             <p className="text-xs font-semibold tracking-[0.16em] text-white/45 uppercase">
               Contact
             </p>
-            <a
-              href="mailto:Ceciya@xmmega.com"
-              className="mt-2 inline-block font-semibold text-white transition-colors hover:text-brand-accent"
-            >
-              Ceciya@xmmega.com
-            </a>
+            <div className="mt-2 flex flex-col items-start gap-2 md:items-end">
+              <a
+                href="mailto:Ceciya@xmmega.com"
+                className="font-semibold text-white transition-colors hover:text-brand-accent"
+              >
+                Ceciya@xmmega.com
+              </a>
+              <a
+                href="https://wa.me/8615396238862"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-white transition-colors hover:text-brand-accent"
+                aria-label="通过 WhatsApp 联系我们：+86 15396238862"
+              >
+                WhatsApp: +86 15396238862
+              </a>
+            </div>
           </div>
         </div>
 
