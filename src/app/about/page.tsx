@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import {
+  CurrencyDollarSimple,
+  Factory,
+  Lightbulb,
+} from "@phosphor-icons/react/ssr";
 
 export const metadata: Metadata = {
   title: "关于我们",
@@ -38,71 +43,59 @@ const advantages = [
   {
     title: "低 MOQ",
     description: "灵活的起订量，帮助品牌以更低门槛启动新品并测试市场。",
-    icon: (
-      <path d="M12 3v18m5-14H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    ),
+    icon: CurrencyDollarSimple,
   },
   {
     title: "支持 ODM/OEM 生产",
     description: "支持定制面料、版型、Logo、标签、颜色和包装，满足不同品牌的产品需求。",
-    icon: (
-      <>
-        <path d="M4 21v-7a2 2 0 0 1 2-2h4V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16" />
-        <path d="M8 21h14M14 7h2m-2 4h2m-2 4h2" />
-      </>
-    ),
+    icon: Factory,
   },
   {
     title: "从想法到真实产品",
     description: (
       <>
         全定制样品交期约为{" "}
-        <strong className="font-bold text-orange-600">12–15 天</strong>
+        <strong className="font-bold text-brand-primary">12–15 天</strong>
         。一个好的工厂，可以帮你把想法变成真实的产品。
       </>
     ),
-    icon: (
-      <>
-        <path d="M9 18h6m-5 3h4" />
-        <path d="M8.5 14.5A7 7 0 1 1 15.5 14.5C14.5 15.2 14 16 14 17h-4c0-1-.5-1.8-1.5-2.5Z" />
-      </>
-    ),
+    icon: Lightbulb,
   },
 ];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-stone-50 px-5 py-14 text-stone-900 sm:px-8 sm:py-20">
+    <main className="min-h-screen bg-brand-secondary px-5 py-14 text-brand-primary sm:px-8 sm:py-20">
       <div className="mx-auto max-w-4xl">
-        <header className="border-b border-stone-200 pb-8 sm:pb-10">
-          <p className="mb-3 text-sm font-semibold tracking-[0.22em] text-emerald-700 uppercase">
+        <header className="border-b border-brand-border pb-8 sm:pb-10">
+          <p className="mb-3 text-sm font-bold tracking-[0.22em] text-brand-muted uppercase">
             YOUMEGA
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             关于我们
           </h1>
         </header>
 
-        <div className="divide-y divide-stone-200">
+        <div className="divide-y divide-brand-border">
           {sections.map((section) => (
             <section
               key={section.title}
               className="grid gap-5 py-9 sm:grid-cols-[180px_1fr] sm:gap-10 sm:py-12"
             >
-              <h2 className="text-2xl font-semibold tracking-tight">
+              <h2 className="text-2xl font-bold tracking-tight">
                 {section.title}
               </h2>
 
               <div>
-                <p className="text-base leading-8 text-stone-700 sm:text-lg">
+                <p className="text-base leading-8 text-brand-muted sm:text-lg">
                   {section.introduction}
                 </p>
-                <ul className="mt-5 space-y-3 text-sm leading-7 text-stone-600 sm:text-base">
+                <ul className="mt-5 space-y-3 text-sm leading-7 text-brand-muted sm:text-base">
                   {section.details.map((detail) => (
                     <li key={detail} className="flex gap-3">
                       <span
                         aria-hidden="true"
-                        className="mt-[0.7rem] size-1.5 shrink-0 rounded-full bg-emerald-600"
+                        className="mt-[0.7rem] size-1.5 shrink-0 rounded-full bg-brand-primary"
                       />
                       <span>{detail}</span>
                     </li>
@@ -113,7 +106,7 @@ export default function AboutPage() {
           ))}
 
           <section className="grid gap-5 py-9 sm:grid-cols-[180px_1fr] sm:gap-10 sm:py-12">
-            <h2 className="text-2xl font-semibold tracking-tight">
+            <h2 className="text-2xl font-bold tracking-tight">
               为什么选择我们
             </h2>
 
@@ -121,27 +114,16 @@ export default function AboutPage() {
               {advantages.map((advantage) => (
                 <li
                   key={advantage.title}
-                  className="flex gap-4 rounded-2xl border border-stone-200 bg-white p-5 sm:p-6"
+                  className="flex gap-4 rounded-sm border border-brand-border bg-brand-card p-5 transition-colors hover:border-brand-accent sm:p-6"
                 >
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-5"
-                    >
-                      {advantage.icon}
-                    </svg>
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-secondary text-brand-primary">
+                    <advantage.icon aria-hidden="true" size={22} weight="regular" />
                   </span>
                   <div>
-                    <h3 className="font-semibold text-stone-900 sm:text-lg">
+                    <h3 className="font-bold text-brand-primary sm:text-lg">
                       {advantage.title}
                     </h3>
-                    <p className="mt-1 text-sm leading-7 text-stone-600 sm:text-base">
+                    <p className="mt-1 text-sm leading-7 text-brand-muted sm:text-base">
                       {advantage.description}
                     </p>
                   </div>

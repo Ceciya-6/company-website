@@ -1,5 +1,7 @@
 "use client";
 
+import { List, X } from "@phosphor-icons/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -17,17 +19,24 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-[#f7f2e8]/95 backdrop-blur">
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-primary text-white shadow-[0_1px_0_rgba(255,255,255,0.06)]">
+      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 sm:h-[76px] sm:px-8 lg:px-10">
         <Link
           href="/"
-          className="text-xl font-bold tracking-[0.16em] text-stone-900 transition-colors hover:text-orange-600"
+          className="flex shrink-0 items-center transition-opacity hover:opacity-80"
           aria-label="YOUMEGA 首页"
         >
-          YOUMEGA
+          <Image
+            src="/logo.png"
+            alt="YOUMEGA"
+            width={1465}
+            height={285}
+            priority
+            className="h-auto w-[138px] brightness-0 invert sm:w-[164px]"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="主导航">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="主导航">
           {navigation.map((item) => {
             const isActive =
               item.href === "/"
@@ -38,10 +47,12 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative py-2 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:bg-orange-600 after:transition-transform ${
-                  isActive
-                    ? "text-orange-600 after:scale-x-100"
-                    : "text-stone-700 after:scale-x-0 hover:text-orange-600 hover:after:scale-x-100"
+                className={`rounded-sm px-4 py-2.5 text-sm font-semibold transition-colors ${
+                  item.href === "/contact"
+                    ? "ml-2 bg-brand-accent text-white hover:bg-white hover:text-brand-primary"
+                    : isActive
+                      ? "bg-white/10 text-white"
+                      : "text-white/72 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -52,66 +63,53 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="flex size-10 items-center justify-center rounded-full border border-stone-300 text-stone-800 transition-colors hover:border-orange-500 hover:text-orange-600 md:hidden"
+          className="flex size-11 shrink-0 items-center justify-center rounded-sm border border-white/35 text-white transition-colors hover:border-brand-accent hover:bg-brand-accent md:hidden"
           aria-label={isMenuOpen ? "关闭导航菜单" : "打开导航菜单"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsMenuOpen((open) => !open)}
         >
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            className="size-5"
-          >
-            {isMenuOpen ? (
-              <>
-                <path d="M6 6l12 12" />
-                <path d="M18 6L6 18" />
-              </>
-            ) : (
-              <>
-                <path d="M4 7h16" />
-                <path d="M4 12h16" />
-                <path d="M4 17h16" />
-              </>
-            )}
-          </svg>
+          {isMenuOpen ? (
+            <X aria-hidden="true" size={24} weight="regular" />
+          ) : (
+            <List aria-hidden="true" size={26} weight="regular" />
+          )}
         </button>
       </div>
 
-      <nav
-        id="mobile-navigation"
-        aria-label="移动端主导航"
-        className={`overflow-hidden border-t border-stone-200 bg-[#f7f2e8] transition-[max-height,opacity] duration-300 md:hidden ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
-          {navigation.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+      {isMenuOpen && (
+        <nav
+          id="mobile-navigation"
+          aria-label="移动端主导航"
+          className="border-t border-white/10 bg-brand-primary md:hidden"
+        >
+          <div className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
+            {navigation.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`border-b border-stone-200/80 px-1 py-3.5 text-sm font-medium last:border-b-0 ${
-                  isActive ? "text-orange-600" : "text-stone-700"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`min-h-12 border-b border-white/10 px-2 py-3.5 text-base font-semibold last:border-b-0 ${
+                    item.href === "/contact"
+                      ? "my-2 flex items-center justify-center rounded-sm border-b-0 bg-brand-accent text-white"
+                      : isActive
+                        ? "text-white"
+                        : "text-white/70 hover:text-brand-accent"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
