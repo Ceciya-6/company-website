@@ -27,7 +27,7 @@ export function SiteHeader() {
           aria-label="YOUMEGA 首页"
         >
           <Image
-            src="/logo.png"
+            src="/images/logo.png"
             alt="YOUMEGA"
             width={1465}
             height={285}

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description:
     "YOUMEGA 提供无缝和裁剪缝制运动服供应服务，支持面料、版型、Logo、标签、颜色和包装定制。",
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [{ url: "/images/favicon.png", type: "image/png" }],
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
   },
 };
 
