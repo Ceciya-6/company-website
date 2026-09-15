@@ -50,7 +50,7 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden bg-brand-secondary">
       <section className="relative min-h-[calc(100svh-68px)] bg-brand-primary text-white sm:min-h-[calc(100svh-76px)]">
-        <HeroVideo poster={products[0].image} />
+        <HeroVideo />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-68px)] max-w-7xl items-end px-5 pt-7 pb-10 sm:min-h-[calc(100svh-76px)] sm:px-8 sm:pt-10 sm:pb-14 lg:px-10 lg:pb-20">
           <div className="max-w-3xl [text-shadow:0_2px_14px_rgba(0,0,0,0.9)]">

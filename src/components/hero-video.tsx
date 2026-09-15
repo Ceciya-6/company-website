@@ -8,25 +8,25 @@ const videoSequence = [
   "/images/factory/factory-index3.mp4",
 ];
 
-export function HeroVideo({ poster }: { poster: string }) {
+export function HeroVideo() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <video
-      key={videoSequence[currentIndex]}
       className="absolute inset-0 h-full w-full object-cover object-center"
+      src={videoSequence[currentIndex]}
       autoPlay
       muted
       playsInline
       preload="auto"
-      poster={poster}
       aria-hidden="true"
       data-sequence-index={currentIndex + 1}
+      onCanPlay={(event) => {
+        void event.currentTarget.play();
+      }}
       onEnded={() => {
         setCurrentIndex((index) => (index + 1) % videoSequence.length);
       }}
-    >
-      <source src={videoSequence[currentIndex]} type="video/mp4" />
-    </video>
+    />
   );
 }
