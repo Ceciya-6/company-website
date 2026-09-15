@@ -62,7 +62,7 @@ export default function HomePage() {
           <source src="/images/factory/factory-index.mp4" type="video/mp4" />
         </video>
 
-        <div className="relative mx-auto flex min-h-[calc(100svh-68px)] max-w-7xl items-center px-5 py-7 sm:min-h-[calc(100svh-76px)] sm:px-8 sm:py-10 lg:px-10">
+        <div className="relative mx-auto flex min-h-[calc(100svh-68px)] max-w-7xl items-end px-5 pt-7 pb-10 sm:min-h-[calc(100svh-76px)] sm:px-8 sm:pt-10 sm:pb-14 lg:px-10 lg:pb-20">
           <div className="max-w-3xl [text-shadow:0_2px_14px_rgba(0,0,0,0.9)]">
             <p className="text-xs font-bold tracking-[0.18em] text-white uppercase sm:text-sm sm:tracking-[0.24em]">
               Xiamen · China · OEM / ODM · Private Label
