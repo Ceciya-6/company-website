@@ -49,15 +49,18 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden bg-brand-secondary">
       <section className="relative min-h-[calc(100svh-68px)] bg-brand-primary text-white sm:min-h-[calc(100svh-76px)]">
-        <Image
-          src={products[0].image}
-          alt=""
-          fill
-          priority
-          loading="eager"
-          sizes="100vw"
-          className="object-cover object-[62%_28%] opacity-45 sm:object-[65%_32%] lg:object-[78%_35%] lg:opacity-70"
-        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-50 lg:opacity-70"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={products[0].image}
+          aria-hidden="true"
+        >
+          <source src="/images/factory/factory-index.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,12,0.98)_0%,rgba(10,10,12,0.88)_48%,rgba(10,10,12,0.18)_100%)]" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-68px)] max-w-7xl items-center px-5 py-7 sm:min-h-[calc(100svh-76px)] sm:px-8 sm:py-10 lg:px-10">
