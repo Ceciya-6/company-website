@@ -1,3 +1,5 @@
+"use client";
+
 export function HeroVideo() {
   return (
     <video
@@ -9,6 +11,9 @@ export function HeroVideo() {
       playsInline
       preload="auto"
       aria-hidden="true"
+      onCanPlay={(event) => {
+        void event.currentTarget.play();
+      }}
     />
   );
 }
