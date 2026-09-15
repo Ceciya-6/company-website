@@ -109,6 +109,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="bg-brand-primary px-5 py-16 text-white sm:px-8 sm:py-24 lg:px-10" aria-labelledby="advantages">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">Why YOUMEGA</p>
+          <h2 id="advantages" className="mt-3 max-w-3xl text-4xl tracking-tight text-white sm:text-5xl">
+            从第一件样品，到完整品牌项目
+          </h2>
+          <div className="mt-10 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {advantages.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article key={item.title} className="bg-brand-primary p-6 sm:p-7">
+                  <Icon aria-hidden="true" size={30} weight="regular" className="text-brand-accent" />
+                  <h3 className="mt-6 text-xl text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-white/65">{item.text}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-16 sm:px-8 sm:py-24 lg:px-10" aria-labelledby="featured-products">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -148,27 +169,6 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-brand-primary px-5 py-16 text-white sm:px-8 sm:py-24 lg:px-10" aria-labelledby="advantages">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">Why YOUMEGA</p>
-          <h2 id="advantages" className="mt-3 max-w-3xl text-4xl tracking-tight text-white sm:text-5xl">
-            从第一件样品，到完整品牌项目
-          </h2>
-          <div className="mt-10 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-            {advantages.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article key={item.title} className="bg-brand-primary p-6 sm:p-7">
-                  <Icon aria-hidden="true" size={30} weight="regular" className="text-brand-accent" />
-                  <h3 className="mt-6 text-xl text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/65">{item.text}</p>
-                </article>
-              );
-            })}
           </div>
         </div>
       </section>
