@@ -63,8 +63,11 @@ export default async function ProductDetailPage({
             <p className="mt-6 text-sm leading-6 text-brand-muted">
               面料成分、克重、颜色、尺码、定制方式、样品周期和本款 MOQ 将根据您的项目要求确认。
             </p>
-            <Link href="/contact" className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-accent px-6 py-3 font-bold text-white transition-colors hover:bg-brand-primary sm:w-fit">
-              获取本款报价 <ArrowRight aria-hidden="true" size={18} weight="bold" />
+            <Link
+              href={`/contact?source=product&product=${encodeURIComponent(product.name)}#quote-form`}
+              className="quote-cta mt-7 w-full sm:w-fit"
+            >
+              就这款产品询盘 <ArrowRight aria-hidden="true" size={18} weight="bold" />
             </Link>
           </div>
         </div>

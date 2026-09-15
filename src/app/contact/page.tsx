@@ -82,7 +82,15 @@ const trustSections = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string | string[] }>;
+}) {
+  const requestedProduct = (await searchParams).product;
+  const productName =
+    typeof requestedProduct === "string" ? requestedProduct : "";
+
   return (
     <main className="bg-brand-secondary">
       <section className="border-b border-brand-border" aria-labelledby="quote-title">
@@ -138,8 +146,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="min-w-0 border-t border-brand-border bg-white p-4 sm:p-8 lg:border-t-0 lg:border-l lg:p-10 xl:p-14">
-            <QuoteForm />
+          <div id="quote-form" className="min-w-0 scroll-mt-24 border-t border-brand-border bg-white p-4 sm:p-8 lg:border-t-0 lg:border-l lg:p-10 xl:p-14">
+            <QuoteForm productName={productName} />
           </div>
         </div>
       </section>

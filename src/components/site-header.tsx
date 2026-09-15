@@ -1,6 +1,6 @@
 "use client";
 
-import { List, X } from "@phosphor-icons/react";
+import { ArrowRight, List, X } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,7 +11,6 @@ const navigation = [
   { label: "关于我们", href: "/about" },
   { label: "产品中心", href: "/products" },
   { label: "常见问题", href: "/faq" },
-  { label: "联系我们", href: "/contact" },
 ];
 
 export function SiteHeader() {
@@ -48,17 +47,19 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={`rounded-sm px-4 py-2.5 text-sm font-semibold transition-colors ${
-                  item.href === "/contact"
-                    ? "ml-2 bg-brand-accent text-white hover:bg-white hover:text-brand-primary"
-                    : isActive
-                      ? "bg-white/10 text-white"
-                      : "text-white/72 hover:bg-white/10 hover:text-white"
+                  isActive
+                    ? "bg-white/10 text-white"
+                    : "text-white/72 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
+          <Link href="/contact?source=header#quote-form" className="quote-cta quote-cta--header ml-2">
+            Contact / Get a Quote
+            <ArrowRight aria-hidden="true" size={16} weight="bold" />
+          </Link>
         </nav>
 
         <button
@@ -96,17 +97,23 @@ export function SiteHeader() {
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={`min-h-12 border-b border-white/10 px-2 py-3.5 text-base font-semibold last:border-b-0 ${
-                    item.href === "/contact"
-                      ? "my-2 flex items-center justify-center rounded-sm border-b-0 bg-brand-accent text-white"
-                      : isActive
-                        ? "text-white"
-                        : "text-white/70 hover:text-brand-accent"
+                    isActive
+                      ? "text-white"
+                      : "text-white/70 hover:text-brand-accent"
                   }`}
                 >
                   {item.label}
                 </Link>
               );
             })}
+            <Link
+              href="/contact?source=mobile-menu#quote-form"
+              onClick={() => setIsMenuOpen(false)}
+              className="quote-cta mt-3 w-full"
+            >
+              Contact / Get a Quote
+              <ArrowRight aria-hidden="true" size={17} weight="bold" />
+            </Link>
           </div>
         </nav>
       )}

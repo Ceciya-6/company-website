@@ -41,7 +41,7 @@ export default function ProductsPage() {
           className="grid gap-6 py-9 sm:grid-cols-2 sm:gap-8 sm:py-12"
           aria-label="Product collection"
         >
-          {products.map((product) => (
+          {products.map((product, index) => (
             <article
               key={product.image}
               className="overflow-hidden rounded-sm border border-brand-border bg-brand-card transition-colors hover:border-brand-accent"
@@ -52,6 +52,7 @@ export default function ProductsPage() {
                     src={product.image}
                     alt={product.alt}
                     fill
+                    loading={index === 0 ? "eager" : "lazy"}
                     sizes="(min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />

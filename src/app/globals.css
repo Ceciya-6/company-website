@@ -62,6 +62,44 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+.quote-cta {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid var(--brand-accent);
+  background: var(--brand-accent);
+  padding: 0.875rem 1.5rem;
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.quote-cta:hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.quote-cta--header {
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+
+.quote-fab {
+  box-shadow: 0 12px 32px rgb(10 10 12 / 24%);
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--brand-accent);

@@ -162,7 +162,7 @@ export function FaqExplorer() {
             <h2 className="mt-3 text-3xl text-white sm:text-4xl">没有找到您需要的答案？</h2>
             <p className="mt-3 max-w-2xl leading-7 text-white/65">把参考图片、目标数量和市场发给我们，我们将在工作日 24 小时内回复。</p>
           </div>
-          <Link href="/contact" className="inline-flex min-h-14 items-center justify-center gap-3 bg-brand-accent px-6 py-4 font-bold text-white transition-colors hover:bg-white hover:text-brand-primary">
+          <Link href="/contact?source=faq#quote-form" className="quote-cta">
             获取报价 <ArrowRight aria-hidden="true" size={19} weight="bold" />
           </Link>
         </section>

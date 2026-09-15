@@ -65,8 +65,8 @@ export default function HomePage() {
             </p>
             <div className="mt-6 flex flex-col gap-3 min-[420px]:flex-row sm:mt-8">
               <Link
-                href="/contact"
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-brand-accent px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white hover:text-brand-primary"
+                href="/contact?source=home-hero#quote-form"
+                className="quote-cta w-full min-[420px]:w-auto"
               >
                 获取报价 <ArrowRight aria-hidden="true" size={18} weight="bold" />
               </Link>
@@ -178,12 +178,12 @@ export default function HomePage() {
               <p className="mt-3 leading-7 text-brand-muted">了解无缝与裁剪缝制供应能力，以及厂内生产流程。</p>
               <span className="mt-7 inline-flex items-center gap-2 font-bold group-hover:text-brand-accent">关于 YOUMEGA <ArrowRight aria-hidden="true" size={18} weight="bold" /></span>
             </Link>
-            <div className="bg-brand-accent p-7 text-white">
+            <div className="bg-brand-primary p-7 text-white">
               <p className="text-sm font-bold text-white/70">03 / GET A QUOTE</p>
               <h2 id="next-step" className="mt-7 text-2xl text-white">把您的想法发给我们</h2>
               <p className="mt-3 leading-7 text-white/80">提交参考图、产品品类和预计数量，我们将在工作日 24 小时内回复。</p>
-              <Link href="/contact" className="mt-7 inline-flex min-h-12 items-center gap-2 bg-white px-5 py-3 font-bold text-brand-primary transition-colors hover:bg-brand-primary hover:text-white">
-                联系我们 <ArrowRight aria-hidden="true" size={18} weight="bold" />
+              <Link href="/contact?source=home-case#quote-form" className="quote-cta mt-7">
+                我也要类似方案 <ArrowRight aria-hidden="true" size={18} weight="bold" />
               </Link>
             </div>
           </div>

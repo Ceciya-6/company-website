@@ -21,19 +21,17 @@ type QuoteData = {
   details: string;
 };
 
-const initialData: QuoteData = {
-  email: "",
-  category: "",
-  quantity: "",
-  name: "",
-  company: "",
-  whatsapp: "",
-  details: "",
-};
-
-export function QuoteForm() {
+export function QuoteForm({ productName = "" }: { productName?: string }) {
   const [step, setStep] = useState<1 | 2>(1);
-  const [data, setData] = useState<QuoteData>(initialData);
+  const [data, setData] = useState<QuoteData>(() => ({
+    email: "",
+    category: "",
+    quantity: "",
+    name: "",
+    company: "",
+    whatsapp: "",
+    details: productName ? `我想咨询这款产品：${productName}` : "",
+  }));
   const [fileName, setFileName] = useState("");
   const [fileError, setFileError] = useState("");
   const [isReady, setIsReady] = useState(false);
@@ -96,8 +94,8 @@ export function QuoteForm() {
     return (
       <div className="flex min-h-[650px] min-w-0 flex-col justify-center border border-brand-border bg-white p-6 sm:p-10" aria-live="polite">
         <CheckCircle aria-hidden="true" size={54} weight="fill" className="text-brand-accent" />
-        <p className="mt-7 text-xs font-bold tracking-[0.18em] text-brand-accent uppercase">询价内容已整理</p>
-        <h2 className="mt-3 text-3xl tracking-tight sm:text-4xl">选择一个渠道发送给我们</h2>
+        <p className="mt-7 text-xs font-bold tracking-[0.18em] text-brand-accent uppercase">表格提交成功</p>
+        <h2 className="mt-3 text-3xl tracking-tight sm:text-4xl">询盘信息已整理</h2>
         <p className="mt-5 max-w-xl leading-8 text-brand-muted">
           点击后会打开您的邮件或 WhatsApp，并自动带入刚才填写的内容。我们将在工作日 24 小时内回复。
         </p>

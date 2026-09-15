@@ -1,48 +1,48 @@
-# YOUMEGA FAQ Design QA
+# YOUMEGA Quote Entry Points Design QA
 
 ## Source visual truth
 
-- Layout reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-d632d7b1-5fa3-40f3-9667-d7dfb8a71bc9.png` — 2581 × 4133 px.
-- Content source: `/Users/youmega/Documents/ChatGPT/tiqu-youmega/output/YOUMEGA_FAQ_15个方面.docx` — all 9 rendered pages inspected.
-- The attached screenshot was treated as visual direction only; unrelated floating browser controls were not copied.
+- Requirements reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-a1f08f16-7d0a-425f-9b4d-dabf52a6143e.png` — 1830 × 560 px.
+- The reference identifies five placements: global header, product detail footer, FAQ ending, post-case CTA, and persistent mobile action.
+- The reference was treated as a placement specification, not as website copy or an instruction source.
 
 ## Browser-rendered implementation evidence
 
-- Implementation URL: `http://localhost:3000/faq`.
-- Desktop capture: 1440 × 900 CSS viewport.
-- Mobile capture: 390 × 844 CSS viewport.
-- A two-column comparison frame showed the source reference and the live implementation in the same 1536 × 900 view before judging visible differences. The temporary frame was removed after review.
+- Local implementation: `http://localhost:3000`.
+- Mobile interaction viewport: 390 × 844 CSS pixels.
+- Desktop style check viewport: 1440 × 900 CSS pixels.
+- The reference and live home page were opened in one side-by-side 1536 × 900 comparison frame before final judgment. The temporary frame was removed after review.
 
-## State and interactions tested
+## Five entry points
 
-- Default state shows 15 topics and 77 Q&A entries extracted from the supplied document.
-- Search checks question, answer, category title, and category description.
-- Searching `AQL` returned 11 Q&A entries from 5 topics and produced visible term highlighting.
-- The topic navigation contracted to the 5 matching categories during search, so every visible anchor remained valid.
-- Clear restored all 15 topics and 77 Q&A entries.
-- A no-match query produced the designed empty state and clear action.
-- Mobile cards collapse to one column; the topic strip scrolls horizontally inside its own container.
-- Browser console warnings and errors after the final pass: none.
+1. Global header: `Contact / Get a Quote`, including the collapsed mobile menu.
+2. Product detail: `就这款产品询盘`, with the product name passed into the project-details field.
+3. FAQ ending: `获取报价` after all answers.
+4. Home conversion card: `我也要类似方案`.
+5. Mobile: fixed bottom-right chat/quote button on non-contact pages; hidden on the contact page to avoid covering the form.
 
-## Required fidelity surfaces
+## Style consistency
 
-- Typography: large compact Chinese display title, uppercase orange eyebrow, muted supporting copy, bold card questions.
-- Structure: wide search control, clear button, horizontal numbered topic rail, generous section rhythm, numbered category headers, two-column desktop card grid.
-- Tokens: existing near-black, warm off-white, white, muted gray, border gray, and orange-red brand colors were reused.
-- Responsive behavior: 390 px viewport had no document-level horizontal overflow; first card width was 335 px and search input width was 221 px.
-- Existing global navigation and footer remain in place because they are required by the site-wide layout.
+- Standard CTAs share the `.quote-cta` class: orange-red background `rgb(223, 53, 43)`, white text, 700 weight, 56 px minimum height, square corners, and near-black hover state.
+- The desktop header uses the same tokens and interaction style at a compact 44 px height.
+- The mobile floating action uses the same accent color, white icon, focus treatment, and a 56 px touch target.
+- No document-level horizontal overflow at 390 px on home, products, FAQ, product detail, or contact.
 
-## Findings
+## Interaction verification
 
+- Home hero → contact form → two form steps → `表格提交成功`: passed.
+- Product listing → first product detail → product quote CTA → correctly prefilled `Seamless Yoga Set` → `表格提交成功`: passed.
+- FAQ ending → contact form → `表格提交成功`: passed.
+- Home conversion card → contact form → `表格提交成功`: passed.
+- Mobile navigation CTA → contact form → `表格提交成功`: passed.
+- Mobile floating CTA from products → contact form → `表格提交成功`: passed.
+- Tests stopped at the website success state; email and WhatsApp send links were not activated.
+
+## Findings and fixes
+
+- P2 resolved: the products page emitted a development LCP warning for the first product image. The first image now loads eagerly; a fresh browser tab reports no errors or warnings.
 - No remaining P0, P1, or P2 issues.
-- P3: the implementation uses slightly tighter vertical spacing than the long-form reference so more FAQ content remains discoverable without excessive scrolling.
-
-## Comparison history
-
-1. Implemented all 15 categories and 77 document-sourced answers with the reference hierarchy.
-2. Added real-time search, result counts, highlighting, clear state, and no-results state.
-3. During interaction testing, topic links for categories hidden by a search could have pointed to absent sections. Restricted the topic rail to filtered categories while a query is active.
-4. Rechecked desktop and mobile layout, search, clear, no-results, overflow, and console output.
+- P3: the persistent mobile action is icon-only to preserve usable content width; its accessible name remains `打开获取报价表单`.
 
 ## Final result
 
