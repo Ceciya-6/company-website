@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
 import { DownloadSimple } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
+import Link from "next/link";
+import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "产品中心",
 };
-
-const products = [
-  {
-    name: "Seamless Yoga Set",
-    image: "/images/products/seamless yoga set- 2pcs.jpg",
-    alt: "Seamless Yoga Set for Fitness and Beauty of the Back, High-Waisted, Hip-Boosting, Ab-Enhancing, Pilates Training, Yoga Set for Women.",
-  },
-  {
-    name: "Women’s Three-Piece Sports Set",
-    image: "/images/products/yogaset-3pcs.jpg",
-    alt: "Tight-fitting sports outfit set for women - quick-drying and breathable fitness wear three-piece set including a cardigan and yoga pants.",
-  },
-];
 
 export default function ProductsPage() {
   return (
@@ -57,22 +46,27 @@ export default function ProductsPage() {
               key={product.image}
               className="overflow-hidden rounded-sm border border-brand-border bg-brand-card transition-colors hover:border-brand-accent"
             >
-              <div className="relative aspect-square overflow-hidden bg-white">
-                <Image
-                  src={product.image}
-                  alt={product.alt}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 hover:scale-[1.02]"
-                />
-              </div>
+              <Link href={`/products/${product.slug}`} className="group block">
+                <div className="relative aspect-square overflow-hidden bg-white">
+                  <Image
+                    src={product.image}
+                    alt={product.alt}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              </Link>
               <div className="p-5 sm:p-6">
                 <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
-                  {product.name}
+                  <Link href={`/products/${product.slug}`} className="hover:text-brand-accent">{product.name}</Link>
                 </h2>
                 <p className="mt-3 text-base leading-7 text-brand-muted">
                   {product.alt}
                 </p>
+                <Link href={`/products/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center font-bold text-brand-primary hover:text-brand-accent">
+                  View product details →
+                </Link>
               </div>
             </article>
           ))}
