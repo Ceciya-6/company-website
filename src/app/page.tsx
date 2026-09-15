@@ -54,6 +54,7 @@ export default function HomePage() {
           alt=""
           fill
           priority
+          loading="eager"
           sizes="100vw"
           className="object-cover object-[62%_28%] opacity-45 sm:object-[65%_32%] lg:object-[78%_35%] lg:opacity-70"
         />
