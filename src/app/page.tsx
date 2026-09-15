@@ -50,7 +50,7 @@ export default function HomePage() {
     <main className="overflow-hidden bg-brand-secondary">
       <section className="relative min-h-[calc(100svh-68px)] bg-brand-primary text-white sm:min-h-[calc(100svh-76px)]">
         <video
-          className="absolute inset-0 h-full w-full object-cover object-center opacity-50 lg:opacity-70"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           autoPlay
           muted
           loop
@@ -61,17 +61,16 @@ export default function HomePage() {
         >
           <source src="/images/factory/factory-index.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,12,0.98)_0%,rgba(10,10,12,0.88)_48%,rgba(10,10,12,0.18)_100%)]" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-68px)] max-w-7xl items-center px-5 py-7 sm:min-h-[calc(100svh-76px)] sm:px-8 sm:py-10 lg:px-10">
-          <div className="max-w-3xl">
-            <p className="text-xs font-bold tracking-[0.18em] text-white/75 uppercase sm:text-sm sm:tracking-[0.24em]">
+          <div className="max-w-3xl [text-shadow:0_2px_14px_rgba(0,0,0,0.9)]">
+            <p className="text-xs font-bold tracking-[0.18em] text-white uppercase sm:text-sm sm:tracking-[0.24em]">
               Xiamen · China · OEM / ODM · Private Label
             </p>
             <h1 className="mt-4 max-w-3xl text-[clamp(2.45rem,7vw,5.8rem)] leading-[0.96] font-bold tracking-[-0.055em] text-white">
               为自有品牌提供专业运动服 <span className="text-brand-accent italic">OEM</span> 定制
             </h1>
-            <p className="mt-5 max-w-2xl text-[15px] leading-6 text-white/76 sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-2xl text-[15px] leading-6 text-white sm:text-lg sm:leading-8">
               厦门运动服供应商，提供现款加标、OEM/ODM 开发、定制包装及样品和大货生产服务。现款加标 100 套起订。
             </p>
             <div className="mt-6 flex flex-col gap-3 min-[420px]:flex-row sm:mt-8">
