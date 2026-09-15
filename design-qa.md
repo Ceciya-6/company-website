@@ -1,43 +1,46 @@
-# YOUMEGA Global Visual System — Design QA
+# YOUMEGA Quote Form and Trust Area Design QA
 
 ## Source visual truth
 
-- Desktop reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-9e4b5016-6756-477b-a168-830f39c48c14.png` — 2442 × 1098 px.
-- Mobile navigation reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-0bcdfda9-1b7c-4cd9-abd6-776f5f914251.jpg` — 1242 × 2688 px.
-- Mobile palette reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-47e72b04-60ec-4970-b73a-9f8cfbe234ee.jpg` — 1242 × 2688 px.
+- Step-one reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-a356614e-ecfe-4f83-8103-8fc94a058b36.png` — 2532 × 1496 px.
+- Step-two reference: `/var/folders/z0/y8tly3v94ld7n1n24wk_nksh0000gn/T/codex-clipboard-bf2a56d7-533f-4bde-8ce6-025799fcec6d.png` — 2472 × 1360 px.
+- Content source: `/Users/youmega/Desktop/YOUMEGA_信任区五块信息汇总.docx`, all four rendered pages inspected.
 
 ## Browser-rendered implementation evidence
 
-- Desktop: `design-qa-assets/implementation-desktop.png` — 1440 × 900 px, CSS viewport 1440 × 900. The in-app browser captured the oversized QA frame at 0.5 density; the content region was cropped and normalized to 1× for comparison.
-- Mobile: `design-qa-assets/implementation-mobile.png` — 390 × 844 px, CSS viewport 390 × 844. The 0.5-density frame capture was cropped and normalized to 1×.
-- Extra-small mobile: `design-qa-assets/implementation-mobile-narrow.png` — 304 × 697 px, direct in-app browser viewport at 1×.
-- Open mobile menu: `design-qa-assets/implementation-mobile-menu.png` — 304 × 697 px, direct in-app browser viewport at 1×.
-- Contact page and footer: `design-qa-assets/implementation-mobile-contact-footer.png` — 304 × 933 px full-page capture.
+- Implementation URL: `http://localhost:3000/contact`.
+- Desktop states captured in the Codex in-app browser at a 1536 × 900 CSS viewport, device pixel ratio 1. The browser image transport produced a 768 px normalized capture, so the comparison harness scaled the live implementation and reference equally.
+- Mobile states captured at a 390 × 844 CSS viewport, device pixel ratio 1. The effective page client width was 375 px after scrollbar reservation.
+- The source reference and implementation were opened together in a single two-column comparison frame before judging visible differences. The temporary comparison frame was removed after review and is not part of the website.
 
-## Comparison evidence
+## State and interactions tested
 
-- Full desktop comparison: `design-qa-assets/comparison-desktop.png`.
-- Full mobile comparison: `design-qa-assets/comparison-mobile.png`.
-- Focused checks were made on the header logo, navigation contrast, mobile menu button, accent contact button, section typography, card/background palette, footer logo, company name, email, and automatic copyright year.
+- Step one: valid email, product category, and quantity entered; the Continue button advanced to step two.
+- Step two: name, company, WhatsApp, project details, attachment control, Back button, and final quote action were visible and operable.
+- Completion: the final action produced the confirmation state with prefilled email and WhatsApp links; no third-party message was sent during testing.
+- File handling: the UI exposes the documented optional 10 MB limit and a visible error state for oversized files.
+- Responsive layout: desktop split composition and mobile stacked composition checked; mobile horizontal overflow was fixed and rechecked at `scrollWidth 375 = clientWidth 375`.
+- Trust content: certification, packaging, logistics, trade terms, and response commitment all rendered with the document's qualifications and order-specific caveats.
+- Browser console errors and warnings checked after the final pass: none.
 
-## State and primary interactions tested
+## Required fidelity surfaces
 
-- `/about` rendered with the desktop navigation state and the mobile collapsed state.
-- Mobile menu button opened the navigation and changed its accessible label from “打开导航菜单” to “关闭导航菜单”.
-- The mobile “联系我们” link navigated successfully to `/contact`, and the target page showed the expected level-one heading.
-- The footer rendered the logo, `Xiamen Mega Garment Co., Ltd.`, the positioning statement, `Ceciya@xmmega.com`, and the automatic 2026 copyright year.
-- Browser console errors checked: none.
+- Fonts and typography: retained the site's Inter/system stack, bold display hierarchy, compact uppercase labels, and red accent emphasis from the reference.
+- Spacing and layout rhythm: recreated the large editorial left panel, bordered right form panel, two-step progress treatment, squared fields, and strong section boundaries. The sticky global header is an intentional existing-site requirement.
+- Colors and visual tokens: reused the established near-black, warm off-white, white, muted gray, border, and red-orange tokens.
+- Image and icon quality: the reference contains no content imagery that needs recreation. Interface icons use the existing Phosphor icon library; no placeholder or handcrafted SVG assets were introduced.
+- Copy and content: screenshot example contacts were not copied. The implementation consistently uses `Ceciya@xmmega.com` and `+86 153 9623 8862`, and labels example freight figures as non-binding references.
 
 ## Findings
 
 - No remaining P0, P1, or P2 findings.
-- The implementation matches the selected style language at the requested system level: near-black navigation/footer, warm off-white page surfaces, restrained red-orange contact/hover accents, bold headings, Inter for Latin text, system fallback for Chinese, and compact squared controls.
+- P3: the desktop reference omits the site's persistent global navigation, while the implementation retains it to preserve the established site-wide skeleton.
 
 ## Comparison history
 
-1. Initial extra-small browser check found horizontal overflow caused by a global `min-width: 320px` rule (P2). Removed the minimum width and recaptured at 304 × 697; horizontal overflow is no longer present.
-2. Initial production build found the client-only Phosphor entry imported by a server component (P1). Switched the About page to the package's SSR entry; the full production build then completed successfully.
-3. Initial console inspection found an LCP warning for the footer logo on short pages (P2). Set the footer logo to eager loading; subsequent browser verification reported zero console errors.
+1. Initial mobile step-two check found a P2 horizontal overflow (`scrollWidth 421`, `clientWidth 375`) caused by intrinsic grid sizing.
+2. Added zero-minimum sizing to the split-layout children and form panel, constrained the progress track, and allowed the long final action label to wrap.
+3. Recaptured the mobile form at the same viewport. Post-fix evidence showed `scrollWidth 375`, `clientWidth 375`, with fields and buttons fully contained.
 
 ## Final result
 
