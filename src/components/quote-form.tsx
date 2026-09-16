@@ -4,12 +4,11 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle,
-  EnvelopeSimple,
   LockSimple,
   Paperclip,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 type QuoteData = {
   email: string;
@@ -21,7 +20,7 @@ type QuoteData = {
   details: string;
 };
 
-export function QuoteForm({ productName = "" }: { productName?: string }) {
+export function QuoteForm({ productName = "", source = "contact" }: { productName?: string; source?: string }) {
   const [step, setStep] = useState<1 | 2>(1);
   const [data, setData] = useState<QuoteData>(() => ({
     email: "",
@@ -34,27 +33,11 @@ export function QuoteForm({ productName = "" }: { productName?: string }) {
   }));
   const [fileName, setFileName] = useState("");
   const [fileError, setFileError] = useState("");
-  const [isReady, setIsReady] = useState(false);
+  const [website, setWebsite] = useState("");
+  const [submissionState, setSubmissionState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
+  const [inquiryId, setInquiryId] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-
-  const inquiryBody = useMemo(
-    () =>
-      [
-        "Hello YOUMEGA, I would like to request a quotation.",
-        "",
-        `Work email: ${data.email}`,
-        `Category: ${data.category}`,
-        `Estimated quantity: ${data.quantity || "To be confirmed"}`,
-        `Name: ${data.name || "Not provided"}`,
-        `Company / Brand: ${data.company || "Not provided"}`,
-        `WhatsApp: ${data.whatsapp || "Not provided"}`,
-        `Project details: ${data.details || "Not provided"}`,
-        fileName ? `Attachment prepared: ${fileName} (please attach manually)` : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    [data, fileName],
-  );
 
   function updateField(field: keyof QuoteData, value: string) {
     setData((current) => ({ ...current, [field]: value }));
@@ -66,10 +49,39 @@ export function QuoteForm({ productName = "" }: { productName?: string }) {
     setStep(2);
   }
 
-  function prepareInquiry(event: FormEvent<HTMLFormElement>) {
+  async function submitInquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (fileError) return;
-    setIsReady(true);
+    if (fileError || submissionState === "submitting") return;
+    setSubmissionState("submitting");
+    setSubmissionMessage("");
+
+    try {
+      const sourcePage = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          attachmentName: fileName,
+          sourcePage: `${source}: ${sourcePage}`,
+          referrer: document.referrer,
+          website,
+        }),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        inquiryId?: string;
+        message?: string;
+      };
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "发送未完成，请稍后重试。");
+      }
+      setInquiryId(result.inquiryId || "");
+      setSubmissionState("success");
+    } catch (error) {
+      setSubmissionMessage(error instanceof Error ? error.message : "发送未完成，请稍后重试。");
+      setSubmissionState("error");
+    }
   }
 
   function handleFile(file?: File) {
@@ -87,34 +99,24 @@ export function QuoteForm({ productName = "" }: { productName?: string }) {
     setFileError("");
   }
 
-  if (isReady) {
-    const mailHref = `mailto:Ceciya@xmmega.com?subject=${encodeURIComponent("YOUMEGA OEM/ODM Quote Request")}&body=${encodeURIComponent(inquiryBody)}`;
-    const whatsappHref = `https://wa.me/8615396238862?text=${encodeURIComponent(inquiryBody)}`;
-
+  if (submissionState === "success") {
     return (
       <div className="flex min-h-[650px] min-w-0 flex-col justify-center border border-brand-border bg-white p-6 sm:p-10" aria-live="polite">
         <CheckCircle aria-hidden="true" size={54} weight="fill" className="text-brand-accent" />
-        <p className="mt-7 text-xs font-bold tracking-[0.18em] text-brand-accent uppercase">表格提交成功</p>
-        <h2 className="mt-3 text-3xl tracking-tight sm:text-4xl">询盘信息已整理</h2>
+        <p className="mt-7 text-xs font-bold tracking-[0.18em] text-brand-accent uppercase">发送成功</p>
+        <h2 className="mt-3 text-3xl tracking-tight sm:text-4xl">我们已收到您的询盘</h2>
         <p className="mt-5 max-w-xl leading-8 text-brand-muted">
-          点击后会打开您的邮件或 WhatsApp，并自动带入刚才填写的内容。我们将在工作日 24 小时内回复。
+          邮件通知、负责人提醒和线索台账已经同步完成。我们将在工作日 24 小时内回复。
         </p>
+        {inquiryId && <p className="mt-4 text-sm text-brand-muted">询盘编号：{inquiryId}</p>}
         {fileName && (
           <p className="mt-4 border-l-2 border-brand-accent pl-4 text-sm leading-6 text-brand-muted">
-            已选择 {fileName}。浏览器无法自动附加本地文件，请在邮件或 WhatsApp 窗口中手动添加。
+            已记录文件名 {fileName}。请通过 WhatsApp 补发文件原件，并注明上方询盘编号。
           </p>
         )}
-        <div className="mt-8 grid gap-3 sm:grid-cols-2">
-          <a href={mailHref} className="inline-flex min-h-14 items-center justify-center gap-3 bg-brand-primary px-5 py-4 font-bold text-white transition-colors hover:bg-brand-accent">
-            <EnvelopeSimple aria-hidden="true" size={21} /> 通过邮件发送
-          </a>
-          <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex min-h-14 items-center justify-center gap-3 bg-brand-accent px-5 py-4 font-bold text-white transition-colors hover:bg-brand-primary">
-            <WhatsappLogo aria-hidden="true" size={22} /> 通过 WhatsApp 发送
-          </a>
-        </div>
-        <button type="button" onClick={() => setIsReady(false)} className="mt-6 inline-flex min-h-11 items-center gap-2 self-start font-bold text-brand-muted hover:text-brand-accent">
-          <ArrowLeft aria-hidden="true" size={18} /> 返回修改
-        </button>
+        <a href={`https://wa.me/8615396238862?text=${encodeURIComponent(`Hello YOUMEGA, I have submitted inquiry ${inquiryId}.`)}`} target="_blank" rel="noreferrer" className="mt-8 inline-flex min-h-14 items-center justify-center gap-3 self-start bg-brand-accent px-6 py-4 font-bold text-white transition-colors hover:bg-brand-primary">
+          <WhatsappLogo aria-hidden="true" size={22} /> 在 WhatsApp 补充信息
+        </a>
       </div>
     );
   }
@@ -178,7 +180,7 @@ export function QuoteForm({ productName = "" }: { productName?: string }) {
           </p>
         </form>
       ) : (
-        <form onSubmit={prepareInquiry} className="mt-12 space-y-6">
+        <form onSubmit={submitInquiry} className="mt-12 space-y-6">
           <p className="leading-7 text-brand-muted">快完成了。这些信息将帮助我们准备更准确的报价。</p>
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block text-sm font-bold">
@@ -200,17 +202,22 @@ export function QuoteForm({ productName = "" }: { productName?: string }) {
           </label>
           <label className="flex min-h-14 cursor-pointer items-center gap-3 border-b border-brand-muted px-1 py-3 text-sm font-bold text-brand-muted hover:text-brand-accent">
             <Paperclip aria-hidden="true" size={20} />
-            <span className="min-w-0 truncate">{fileName || "附上参考图片或技术资料包（可选，最大 10MB）"}</span>
+            <span className="min-w-0 truncate">{fileName || "选择参考资料以记录文件名（原件稍后通过 WhatsApp 补发）"}</span>
             <input type="file" className="sr-only" accept="image/*,.pdf,.doc,.docx,.zip" onChange={(event) => handleFile(event.target.files?.[0])} />
           </label>
+          <label className="sr-only" aria-hidden="true">
+            网站
+            <input tabIndex={-1} autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} />
+          </label>
           {fileError && <p className="text-sm font-bold text-brand-accent" role="alert">{fileError}</p>}
+          {submissionState === "error" && <p className="border border-brand-accent/35 bg-brand-secondary p-4 text-sm font-bold text-brand-accent" role="alert">{submissionMessage}</p>}
           <p className="flex items-center gap-2 text-sm text-brand-muted"><LockSimple aria-hidden="true" size={17} /> 您的设计资料将保密处理，不会对外分享。</p>
           <div className="grid gap-3 sm:grid-cols-[160px_1fr]">
             <button type="button" onClick={() => setStep(1)} className="inline-flex min-h-14 items-center justify-center gap-2 border border-brand-border px-5 py-4 font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary">
               <ArrowLeft aria-hidden="true" size={18} /> 返回
             </button>
-            <button type="submit" className="inline-flex min-h-14 min-w-0 flex-wrap items-center justify-center gap-2 bg-brand-primary px-4 py-4 text-center font-bold text-white transition-colors hover:bg-brand-accent sm:gap-3 sm:px-5">
-              获取我的报价（24 小时内） <ArrowRight aria-hidden="true" size={19} weight="bold" />
+            <button type="submit" disabled={submissionState === "submitting"} className="inline-flex min-h-14 min-w-0 flex-wrap items-center justify-center gap-2 bg-brand-primary px-4 py-4 text-center font-bold text-white transition-colors hover:bg-brand-accent disabled:cursor-wait disabled:opacity-65 sm:gap-3 sm:px-5">
+              {submissionState === "submitting" ? "正在安全发送…" : "获取我的报价（24 小时内）"} <ArrowRight aria-hidden="true" size={19} weight="bold" />
             </button>
           </div>
           <p className="text-center text-sm leading-6 text-brand-muted">我们将在工作日 24 小时内回复。信息仅用于回复您的咨询。</p>
