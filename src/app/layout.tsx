@@ -12,12 +12,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://iyomega.com"),
   title: {
     default: "YOMEGA | 运动服 OEM/ODM 制造商",
     template: "%s | YOMEGA",
   },
   description:
     "YOMEGA 提供无缝和裁剪缝制运动服供应服务，支持面料、版型、Logo、标签、颜色和包装定制。",
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [{ url: "/images/favicon.png", type: "image/png" }],
     shortcut: "/images/favicon.png",
