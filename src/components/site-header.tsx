@@ -23,13 +23,13 @@ export function SiteHeader() {
         <Link
           href="/"
           className="flex shrink-0 items-center transition-opacity hover:opacity-80"
-          aria-label="YOUMEGA 首页"
+          aria-label="YOMEGA 首页"
         >
           <Image
-            src="/images/logo.png"
-            alt="YOUMEGA"
-            width={1465}
-            height={285}
+            src="/images/logo-yomega.png"
+            alt="YOMEGA"
+            width={2170}
+            height={725}
             priority
             className="h-auto w-[138px] brightness-0 invert sm:w-[164px]"
           />

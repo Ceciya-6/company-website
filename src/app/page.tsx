@@ -81,7 +81,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-black text-white" aria-label="YOUMEGA 关键数据">
+      <section className="bg-black text-white" aria-label="YOMEGA 关键数据">
         <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
           {trustItems.map((item) => (
             <div
@@ -101,7 +101,7 @@ export default function HomePage() {
 
       <section className="bg-brand-primary px-5 py-16 text-white sm:px-8 sm:py-24 lg:px-10" aria-labelledby="advantages">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">Why YOUMEGA</p>
+          <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">Why YOMEGA</p>
           <h2 id="advantages" className="mt-3 max-w-3xl text-4xl tracking-tight text-white sm:text-5xl">
             从第一件样品，到完整品牌项目
           </h2>
@@ -176,7 +176,7 @@ export default function HomePage() {
               <p className="text-sm font-bold text-brand-accent">02 / CAPABILITY</p>
               <h3 className="mt-7 text-2xl">了解我们的生产能力</h3>
               <p className="mt-3 leading-7 text-brand-muted">了解无缝与裁剪缝制供应能力，以及厂内生产流程。</p>
-              <span className="mt-7 inline-flex items-center gap-2 font-bold group-hover:text-brand-accent">关于 YOUMEGA <ArrowRight aria-hidden="true" size={18} weight="bold" /></span>
+              <span className="mt-7 inline-flex items-center gap-2 font-bold group-hover:text-brand-accent">关于 YOMEGA <ArrowRight aria-hidden="true" size={18} weight="bold" /></span>
             </Link>
             <div className="bg-brand-primary p-7 text-white">
               <p className="text-sm font-bold text-white/70">03 / GET A QUOTE</p>

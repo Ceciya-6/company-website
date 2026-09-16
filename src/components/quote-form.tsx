@@ -114,7 +114,7 @@ export function QuoteForm({ productName = "", source = "contact" }: { productNam
             已记录文件名 {fileName}。请通过 WhatsApp 补发文件原件，并注明上方询盘编号。
           </p>
         )}
-        <a href={`https://wa.me/8615396238862?text=${encodeURIComponent(`Hello YOUMEGA, I have submitted inquiry ${inquiryId}.`)}`} target="_blank" rel="noreferrer" className="mt-8 inline-flex min-h-14 items-center justify-center gap-3 self-start bg-brand-accent px-6 py-4 font-bold text-white transition-colors hover:bg-brand-primary">
+        <a href={`https://wa.me/8615396238862?text=${encodeURIComponent(`Hello YOMEGA, I have submitted inquiry ${inquiryId}.`)}`} target="_blank" rel="noreferrer" className="mt-8 inline-flex min-h-14 items-center justify-center gap-3 self-start bg-brand-accent px-6 py-4 font-bold text-white transition-colors hover:bg-brand-primary">
           <WhatsappLogo aria-hidden="true" size={22} /> 在 WhatsApp 补充信息
         </a>
       </div>

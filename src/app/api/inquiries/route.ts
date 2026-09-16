@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
       ["Referrer", inquiry.referrer || "Direct / unavailable"],
       ["IP / location", `${ip} · ${location}`],
     ];
-    const emailHtml = `<h2>New YOUMEGA website inquiry</h2><table style="border-collapse:collapse;width:100%;max-width:760px">${rows
+    const emailHtml = `<h2>New YOMEGA website inquiry</h2><table style="border-collapse:collapse;width:100%;max-width:760px">${rows
       .map(([label, value]) => `<tr><th style="border:1px solid #ddd;padding:10px;text-align:left;vertical-align:top">${escapeHtml(label)}</th><td style="border:1px solid #ddd;padding:10px;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`)
       .join("")}</table>`;
     const emailText = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
@@ -203,8 +203,8 @@ export async function POST(request: NextRequest) {
         headers: {
           Authorization: `Bearer ${resendApiKey}`,
           "Content-Type": "application/json",
-          "Idempotency-Key": `youmega-inquiry/${inquiryId}`,
-          "User-Agent": "YOUMEGA-Website/1.0",
+          "Idempotency-Key": `yomega-inquiry/${inquiryId}`,
+          "User-Agent": "YOMEGA-Website/1.0",
         },
         body: JSON.stringify({
           from: inquiryFromEmail,
@@ -223,7 +223,7 @@ export async function POST(request: NextRequest) {
           msgtype: "markdown",
           markdown: {
             content: [
-              "## 🔔 YOUMEGA 新询盘",
+              "## 🔔 YOMEGA 新询盘",
               `> 产品：<font color=\"warning\">${inquiry.category}</font>`,
               `> 客户：${inquiry.company || inquiry.name || "未填写"}`,
               `> 邮箱：${inquiry.email}`,

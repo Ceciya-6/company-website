@@ -17,7 +17,7 @@ import { QuoteForm } from "@/components/quote-form";
 export const metadata: Metadata = {
   title: "获取询价",
   description:
-    "向 YOUMEGA 提交运动服 OEM/ODM 询价，并了解认证、包装、物流、交易条件与响应承诺。",
+    "向 YOMEGA 提交运动服 OEM/ODM 询价，并了解认证、包装、物流、交易条件与响应承诺。",
 };
 
 const trustSections = [
@@ -27,7 +27,7 @@ const trustSections = [
     title: "认证与合规",
     icon: Certificate,
     items: [
-      "YOUMEGA 持有 OEKO-TEX Standard 100 认证，供应商资质审核期间可按要求提供文件。",
+      "YOMEGA 持有 OEKO-TEX Standard 100 认证，供应商资质审核期间可按要求提供文件。",
       "GRS 范围证书：由相应工厂或染厂持有；BSCI：工厂通过 amfori BSCI 社会责任审核。",
       "出口欧盟与美国的货物按 REACH、CPSIA 要求准备，具体证书主体、覆盖范围和有效期以文件为准。",
       "供应商资质审核期间，可按要求提供对应认证文件。",

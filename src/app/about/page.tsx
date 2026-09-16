@@ -8,16 +8,16 @@ import {
 export const metadata: Metadata = {
   title: "关于我们",
   description:
-    "了解 YOUMEGA 与 Xiamen Mega Garment Co., Ltd. 的运动服供应能力、生产体系和 OEM/ODM 服务。",
+    "了解 YOMEGA 与 Xiamen Mega Garment Co., Ltd. 的运动服供应能力、生产体系和 OEM/ODM 服务。",
 };
 
 const sections = [
   {
     title: "我们是谁",
     introduction:
-      "YOUMEGA 是 Xiamen Mega Garment Co., Ltd. 旗下运动服品牌与制造业务。我们自 2017 年开展对外销售与品牌制造，目前公司约有 238 人。",
+      "YOMEGA 是 Xiamen Mega Garment Co., Ltd. 旗下运动服品牌与制造业务。我们自 2017 年开展对外销售与品牌制造，目前公司约有 238 人。",
     details: [
-      "品牌：YOUMEGA",
+      "品牌：YOMEGA",
       "法律主体：Xiamen Mega Garment Co., Ltd.",
       "对外销售与品牌制造成立年份：2017",
       "公司规模：约 238 人",
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-4xl">
         <header className="border-b border-brand-border pb-8 sm:pb-10">
           <p className="mb-3 text-sm font-bold tracking-[0.22em] text-brand-muted uppercase">
-            YOUMEGA
+            YOMEGA
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             关于我们

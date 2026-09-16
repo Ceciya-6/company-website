@@ -15,7 +15,7 @@ export default function ProductsPage() {
         <div className="flex flex-col items-start justify-between gap-7 border-b border-brand-border pb-9 sm:flex-row sm:items-end sm:pb-11">
           <div>
             <p className="mb-4 text-sm font-bold tracking-[0.2em] text-brand-muted uppercase">
-              YOUMEGA
+              YOMEGA
             </p>
             <h1 className="text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl">
               产品中心

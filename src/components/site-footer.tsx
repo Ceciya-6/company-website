@@ -12,13 +12,13 @@ export function SiteFooter() {
             <Link
               href="/"
               className="inline-flex transition-opacity hover:opacity-80"
-              aria-label="YOUMEGA 首页"
+              aria-label="YOMEGA 首页"
             >
               <Image
-                src="/images/logo.png"
-                alt="YOUMEGA"
-                width={1465}
-                height={285}
+                src="/images/logo-yomega.png"
+                alt="YOMEGA"
+                width={2170}
+                height={725}
                 loading="eager"
                 className="h-auto w-[168px] brightness-0 invert sm:w-[184px]"
               />

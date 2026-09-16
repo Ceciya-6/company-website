@@ -4,7 +4,7 @@ import { WhatsappLogo } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 
 const whatsappMessage =
-  "Hello YOUMEGA, I would like to request a quotation for activewear OEM/ODM. Please contact me.";
+  "Hello YOMEGA, I would like to request a quotation for activewear OEM/ODM. Please contact me.";
 const whatsappHref = `https://wa.me/8615396238862?text=${encodeURIComponent(whatsappMessage)}`;
 
 export function MobileQuoteButton() {

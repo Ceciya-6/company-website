@@ -47,7 +47,7 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">YOUMEGA · OEM / ODM</p>
+            <p className="text-sm font-bold tracking-[0.18em] text-brand-accent uppercase">YOMEGA · OEM / ODM</p>
             <h1 className="mt-4 text-4xl tracking-tight sm:text-5xl">{product.name}</h1>
             <p className="mt-6 text-base leading-8 text-brand-muted">{product.alt}</p>
 
