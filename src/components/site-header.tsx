@@ -5,17 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-const navigation = [
-  { label: "首页", href: "/" },
-  { label: "关于我们", href: "/about" },
-  { label: "产品中心", href: "/products" },
-  { label: "常见问题", href: "/faq" },
-];
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { useI18n } from "@/lib/i18n";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useI18n();
+
+  const navigation = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.products"), href: "/products" },
+    { label: t("nav.faq"), href: "/faq" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-primary text-white shadow-[0_1px_0_rgba(255,255,255,0.06)]">
@@ -23,7 +26,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="flex shrink-0 items-center transition-opacity hover:opacity-80"
-          aria-label="YOMEGA 首页"
+          aria-label={t("footer.homeAria")}
         >
           <Image
             src="/images/logo-yomega.png"
@@ -35,7 +38,7 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="主导航">
+        <nav className="hidden items-center gap-1 md:flex" aria-label={t("nav.mainNav")}>
           {navigation.map((item) => {
             const isActive =
               item.href === "/"
@@ -56,32 +59,36 @@ export function SiteHeader() {
               </Link>
             );
           })}
+          <LanguageSwitcher className="ml-2" />
           <Link href="/contact?source=header#quote-form" className="quote-cta quote-cta--header ml-2">
-            Contact / Get a Quote
+            {t("nav.cta")}
             <ArrowRight aria-hidden="true" size={16} weight="bold" />
           </Link>
         </nav>
 
-        <button
-          type="button"
-          className="flex size-11 shrink-0 items-center justify-center rounded-sm border border-white/35 text-white transition-colors hover:border-brand-accent hover:bg-brand-accent md:hidden"
-          aria-label={isMenuOpen ? "关闭导航菜单" : "打开导航菜单"}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-navigation"
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          {isMenuOpen ? (
-            <X aria-hidden="true" size={24} weight="regular" />
-          ) : (
-            <List aria-hidden="true" size={26} weight="regular" />
-          )}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="flex size-11 shrink-0 items-center justify-center rounded-sm border border-white/35 text-white transition-colors hover:border-brand-accent hover:bg-brand-accent"
+            aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? (
+              <X aria-hidden="true" size={24} weight="regular" />
+            ) : (
+              <List aria-hidden="true" size={26} weight="regular" />
+            )}
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (
         <nav
           id="mobile-navigation"
-          aria-label="移动端主导航"
+          aria-label={t("nav.mobileNav")}
           className="border-t border-white/10 bg-brand-primary md:hidden"
         >
           <div className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
@@ -111,7 +118,7 @@ export function SiteHeader() {
               onClick={() => setIsMenuOpen(false)}
               className="quote-cta mt-3 w-full"
             >
-              Contact / Get a Quote
+              {t("nav.cta")}
               <ArrowRight aria-hidden="true" size={17} weight="bold" />
             </Link>
           </div>

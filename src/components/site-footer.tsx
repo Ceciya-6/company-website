@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
+  const { t } = useI18n();
 
   return (
     <footer className="border-t border-white/10 bg-brand-primary text-white/70">
@@ -12,7 +16,7 @@ export function SiteFooter() {
             <Link
               href="/"
               className="inline-flex transition-opacity hover:opacity-80"
-              aria-label="YOMEGA 首页"
+              aria-label={t("footer.homeAria")}
             >
               <Image
                 src="/images/logo-yomega.png"
@@ -27,13 +31,13 @@ export function SiteFooter() {
               Xiamen Mega Garment Co., Ltd.
             </p>
             <p className="mt-2 max-w-xl text-base leading-7">
-              我们具备无缝和裁剪缝制运动服供应能力，为客户提供从产品开发到成衣交付的一体化服务。
+              {t("footer.blurb")}
             </p>
           </div>
 
           <div className="shrink-0 md:text-right">
             <p className="text-xs font-semibold tracking-[0.16em] text-white/45 uppercase">
-              Contact
+              {t("footer.contact")}
             </p>
             <div className="mt-2 flex flex-col items-start gap-2 md:items-end">
               <a
@@ -47,7 +51,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-semibold text-white transition-colors hover:text-brand-accent"
-                aria-label="通过 WhatsApp 联系我们：+86 15396238862"
+                aria-label="WhatsApp: +86 15396238862"
               >
                 WhatsApp: +86 15396238862
               </a>
@@ -56,7 +60,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-9 border-t border-white/10 pt-5 text-xs text-white/45">
-          © {currentYear} Xiamen Mega Garment Co., Ltd. All rights reserved.
+          © {currentYear} Xiamen Mega Garment Co., Ltd. {t("footer.rights")}
         </div>
       </div>
     </footer>

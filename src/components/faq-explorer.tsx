@@ -3,6 +3,7 @@
 import { ArrowRight, MagnifyingGlass, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Fragment, type ReactNode, useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n";
 import { faqCategories } from "@/lib/faqs";
 
 function Highlight({ text, query }: { text: string; query: string }) {
@@ -25,6 +26,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 export function FaqExplorer() {
   const [query, setQuery] = useState("");
+  const { t, lang } = useI18n();
   const normalizedQuery = query.trim().toLocaleLowerCase();
 
   const filteredCategories = useMemo(
@@ -60,26 +62,31 @@ export function FaqExplorer() {
       <section className="border-b border-brand-border px-5 pt-14 sm:px-8 sm:pt-20 lg:px-10" aria-labelledby="faq-title">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-bold tracking-[0.2em] text-brand-accent uppercase sm:text-sm">
-            Manufacturing FAQ
+            {t("faq.eyebrow")}
           </p>
           <h1 id="faq-title" className="mt-5 text-[clamp(3.4rem,8vw,7.5rem)] leading-[0.9] font-medium tracking-[-0.06em]">
-            常见问题解答。
+            {t("faq.title")}
           </h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-brand-muted sm:text-xl sm:leading-9">
-            来自厦门运动服 OEM 工厂的直接回答：最低起订量、样品、质量控制、运输、面料、合规性和品牌规模化。
+            {t("faq.subtitle")}
           </p>
+          {lang === "en" && t("faq.contentNote") && (
+            <p className="mt-4 max-w-3xl border border-brand-border bg-brand-card px-4 py-3 text-sm leading-6 text-brand-muted">
+              {t("faq.contentNote")}
+            </p>
+          )}
 
           <div className="mt-10 flex max-w-4xl border border-brand-border bg-white focus-within:border-brand-primary sm:mt-12">
             <span className="flex w-14 shrink-0 items-center justify-center text-brand-muted sm:w-16">
               <MagnifyingGlass aria-hidden="true" size={23} />
             </span>
-            <label htmlFor="faq-search" className="sr-only">搜索常见问题</label>
+            <label htmlFor="faq-search" className="sr-only">{t("faq.searchLabel")}</label>
             <input
               id="faq-search"
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索常见问题——面料、最低起订量、质量控制、运输……"
+              placeholder={t("faq.searchPlaceholder")}
               className="min-h-16 min-w-0 flex-1 bg-white pr-3 text-base outline-none placeholder:text-brand-muted/65 [&::-webkit-search-cancel-button]:hidden sm:min-h-[72px] sm:text-lg"
               autoComplete="off"
             />
@@ -89,7 +96,7 @@ export function FaqExplorer() {
               className={`flex w-14 shrink-0 items-center justify-center border-l border-brand-border transition-colors sm:w-16 ${
                 query ? "text-brand-primary hover:bg-brand-accent hover:text-white" : "cursor-default text-brand-muted/30"
               }`}
-              aria-label="清除搜索"
+              aria-label={t("faq.clearAria")}
               disabled={!query}
             >
               <X aria-hidden="true" size={21} weight="bold" />
@@ -98,13 +105,13 @@ export function FaqExplorer() {
 
           <p className="mt-4 text-sm text-brand-muted" aria-live="polite">
             {normalizedQuery
-              ? `找到 ${resultCount} 条相关问答，来自 ${filteredCategories.length} 个主题。`
-              : `15 个主题，共 ${resultCount} 条问答。`}
+              ? t("faq.resultCount", { count: resultCount, topics: filteredCategories.length })
+              : t("faq.totalCount", { count: resultCount, topics: faqCategories.length })}
           </p>
         </div>
 
         <div className="sticky top-[68px] z-30 mt-8 border-t border-brand-border bg-brand-secondary/95 backdrop-blur-sm sm:top-[76px]">
-          <nav className="mx-auto flex max-w-7xl gap-7 overflow-x-auto py-4 [scrollbar-width:thin]" aria-label="FAQ 主题导航">
+          <nav className="mx-auto flex max-w-7xl gap-7 overflow-x-auto py-4 [scrollbar-width:thin]" aria-label={t("faq.navLabel")}>
             {(normalizedQuery ? filteredCategories : faqCategories).map((category) => (
               <a key={category.number} href={`#faq-category-${category.number}`} className="shrink-0 text-sm font-bold text-brand-muted transition-colors hover:text-brand-accent">
                 <span className="mr-2 text-brand-accent">{category.number}</span>
@@ -148,22 +155,22 @@ export function FaqExplorer() {
         ) : (
           <section className="py-24 text-center" aria-live="polite">
             <MagnifyingGlass aria-hidden="true" size={42} className="mx-auto text-brand-accent" />
-            <h2 className="mt-6 text-3xl">没有找到相关问题</h2>
-            <p className="mt-3 text-brand-muted">请尝试搜索 MOQ、样品、面料、AQL、DDP 或其他关键词。</p>
+            <h2 className="mt-6 text-3xl">{t("faq.noResultsTitle")}</h2>
+            <p className="mt-3 text-brand-muted">{t("faq.noResultsText")}</p>
             <button type="button" onClick={() => setQuery("")} className="mt-7 min-h-12 bg-brand-primary px-6 py-3 font-bold text-white transition-colors hover:bg-brand-accent">
-              清除搜索
+              {t("faq.noResultsBtn")}
             </button>
           </section>
         )}
 
         <section className="mt-16 grid gap-6 bg-brand-primary p-7 text-white sm:grid-cols-[1fr_auto] sm:items-center sm:p-10">
           <div>
-            <p className="text-xs font-bold tracking-[0.16em] text-brand-accent uppercase">Still have questions?</p>
-            <h2 className="mt-3 text-3xl text-white sm:text-4xl">没有找到您需要的答案？</h2>
-            <p className="mt-3 max-w-2xl leading-7 text-white/65">把参考图片、目标数量和市场发给我们，我们将在工作日 24 小时内回复。</p>
+            <p className="text-xs font-bold tracking-[0.16em] text-brand-accent uppercase">{t("faq.ctaEyebrow")}</p>
+            <h2 className="mt-3 text-3xl text-white sm:text-4xl">{t("faq.ctaTitle")}</h2>
+            <p className="mt-3 max-w-2xl leading-7 text-white/65">{t("faq.ctaText")}</p>
           </div>
           <Link href="/contact?source=faq#quote-form" className="quote-cta">
-            获取报价 <ArrowRight aria-hidden="true" size={19} weight="bold" />
+            {t("common.getQuote")} <ArrowRight aria-hidden="true" size={19} weight="bold" />
           </Link>
         </section>
       </div>

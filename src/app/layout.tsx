@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { MobileQuoteButton } from "@/components/mobile-quote-button";
+import { I18nProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,10 +35,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="zh-CN" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-brand-secondary text-brand-primary">
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">{children}</div>
-        <SiteFooter />
-        <MobileQuoteButton />
+        <I18nProvider>
+          <SiteHeader />
+          <div className="flex flex-1 flex-col">{children}</div>
+          <SiteFooter />
+          <MobileQuoteButton />
+        </I18nProvider>
       </body>
     </html>
   );
