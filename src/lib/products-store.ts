@@ -222,6 +222,6 @@ export async function updateProduct(recordId: string, patch: Partial<Product>) {
 }
 
 export async function deleteProduct(recordId: string) {
-  const query = new URLSearchParams({ records: recordId });
-  await airtableRequest(`?${query}`, { method: "DELETE" });
+  // Airtable 要求 records[] 数组格式，records=id 会报 INVALID_RECORDS。
+  await airtableRequest(`?records%5B%5D=${encodeURIComponent(recordId)}`, { method: "DELETE" });
 }

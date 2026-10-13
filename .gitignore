@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw factory video sources (large; keep local only, hero uses index.mp4)
+public/images/factory/*.mov
+public/images/factory/*.MP4

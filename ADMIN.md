@@ -81,4 +81,5 @@
 
 ## 验收记录
 
-- 2026-10-13：接口与后台部署上线；鉴权（无口令/错误口令 → 401）通过；建表前写接口按预期返回 Airtable 403（`INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND`）。待 Products 表创建后回归：建 → 读 → 改 → 删。
+- 2026-10-13：Products 表（`tblwUO1Ca67kqbaY6`）通过 Airtable 元数据 API 创建，18 个字段与上表一致；两个在售商品已导入并标记首页主推。
+- 2026-10-13：CRUD 回归全部通过——公开列表（source=airtable）、管理列表鉴权（401）、新建（recEvDxgnKaOCzGYM 等）、按记录 ID 读取、PATCH 更新（详情页规格区即时生效）、DELETE 删除（404 确认）。修复记录：Airtable DELETE 需要 `records[]` 数组格式参数。
