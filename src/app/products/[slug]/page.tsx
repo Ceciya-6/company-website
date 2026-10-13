@@ -3,10 +3,13 @@ import { ArrowLeft, ArrowRight, Check } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct, products } from "@/lib/products";
+import { getProductBySlug, productsPageFetchInit } from "@/lib/products-store";
+import { products as fallbackProducts } from "@/lib/products";
+
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return fallbackProducts.map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({
@@ -14,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const product = getProduct((await params).slug);
+  const product = await getProductBySlug((await params).slug, productsPageFetchInit);
   return { title: product?.name ?? "产品详情" };
 }
 
@@ -23,9 +26,18 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const product = getProduct((await params).slug);
+  const product = await getProductBySlug((await params).slug, productsPageFetchInit);
 
   if (!product) notFound();
+
+  const specs: [string, string][] = [
+    ["面料成分及克重", product.fabric],
+    ["尺码", product.sizes],
+    ["颜色", product.colors],
+    ["起订量", product.moq],
+    ["打样周期", product.sampleDays],
+    ["定制选项", product.customOptions],
+  ].filter((entry): entry is [string, string] => Boolean(entry[1]));
 
   return (
     <main className="bg-brand-secondary px-5 py-10 sm:px-8 sm:py-16 lg:px-10">
@@ -60,9 +72,20 @@ export default async function ProductDetailPage({
               ))}
             </ul>
 
-            <p className="mt-6 text-sm leading-6 text-brand-muted">
-              面料成分、克重、颜色、尺码、定制方式、样品周期和本款 MOQ 将根据您的项目要求确认。
-            </p>
+            {specs.length > 0 ? (
+              <dl className="mt-6 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
+                {specs.map(([label, value]) => (
+                  <div key={label} className="flex gap-3">
+                    <dt className="w-20 shrink-0 font-bold text-brand-primary">{label}</dt>
+                    <dd className="leading-6 text-brand-muted">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="mt-6 text-sm leading-6 text-brand-muted">
+                面料成分、克重、颜色、尺码、定制方式、样品周期和本款 MOQ 将根据您的项目要求确认。
+              </p>
+            )}
             <Link
               href={`/contact?source=product&product=${encodeURIComponent(product.name)}#quote-form`}
               className="quote-cta mt-7 w-full sm:w-fit"

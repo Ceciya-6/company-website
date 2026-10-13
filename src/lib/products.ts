@@ -1,10 +1,25 @@
+export type ProductStatus = "active" | "draft" | "archived";
+
 export type Product = {
+  recordId?: string;
   slug: string;
   name: string;
   shortName: string;
   image: string;
   alt: string;
   highlights: string[];
+  category?: string;
+  fabric?: string;
+  sizes?: string;
+  colors?: string;
+  moq?: string;
+  sampleDays?: string;
+  customOptions?: string;
+  sellingPoints?: string;
+  role?: string;
+  status?: ProductStatus;
+  featured?: boolean;
+  sort?: number;
 };
 
 export const products: Product[] = [

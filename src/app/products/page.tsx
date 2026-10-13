@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { DownloadSimple } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/lib/products";
+import { listProducts, productsPageFetchInit } from "@/lib/products-store";
 
 export const metadata: Metadata = {
   title: "产品中心",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const { products } = await listProducts({ init: productsPageFetchInit });
+
   return (
     <main className="min-h-[60vh] bg-brand-secondary px-5 py-14 sm:px-8 sm:py-20">
       <div className="mx-auto w-full max-w-7xl">

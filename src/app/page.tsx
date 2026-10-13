@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { HeroVideo } from "@/components/hero-video";
-import { products } from "@/lib/products";
+import { listProducts, productsPageFetchInit } from "@/lib/products-store";
 
 export const metadata: Metadata = {
   title: "运动服 OEM/ODM 制造商",
@@ -46,7 +46,11 @@ const advantages = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { products } = await listProducts({ init: productsPageFetchInit });
+  const featured = products.filter((product) => product.featured);
+  const displayProducts = (featured.length > 0 ? featured : products).slice(0, 6);
+
   return (
     <main className="overflow-hidden bg-brand-secondary">
       <section className="relative min-h-[calc(100svh-68px)] bg-brand-primary text-white sm:min-h-[calc(100svh-76px)]">
@@ -133,7 +137,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 sm:gap-8">
-            {products.map((product) => (
+            {displayProducts.map((product) => (
               <Link
                 key={product.slug}
                 href={`/products/${product.slug}`}
