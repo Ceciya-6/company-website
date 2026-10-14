@@ -19,7 +19,7 @@ export async function generateMetadata({
   const product = await getProductBySlug((await params).slug, productsPageFetchInit);
   const path = `/products/${product?.slug ?? (await params).slug}`;
   return {
-    title: product?.name ?? "产品详情",
+    title: product?.name ?? "Product Details",
     // 产品描述优先用后台 Description，空时回退站点默认描述。
     description: product?.alt || undefined,
     alternates: pageAlternates(path),

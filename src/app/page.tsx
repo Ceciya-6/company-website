@@ -4,7 +4,7 @@ import { pageAlternates } from "@/lib/seo";
 import { listProducts, productsPageFetchInit } from "@/lib/products-store";
 
 export const metadata: Metadata = {
-  title: "运动服 OEM/ODM 制造商",
+  title: "Activewear OEM/ODM Manufacturer",
   alternates: pageAlternates("/"),
 };
 

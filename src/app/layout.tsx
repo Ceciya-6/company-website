@@ -15,11 +15,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://iyomega.com"),
   title: {
-    default: "YOMEGA | 运动服 OEM/ODM 制造商",
+    default: "YOMEGA | Activewear OEM/ODM Manufacturer",
     template: "%s | YOMEGA",
   },
   description:
-    "YOMEGA 提供无缝和裁剪缝制运动服供应服务，支持面料、版型、Logo、标签、颜色和包装定制。",
+    "YOMEGA supplies seamless and cut-and-sew activewear with custom fabrics, fits, logos, labels, colors and packaging.",
   robots: {
     index: true,
     follow: true,

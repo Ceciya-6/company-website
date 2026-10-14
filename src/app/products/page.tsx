@@ -4,7 +4,7 @@ import { pageAlternates } from "@/lib/seo";
 import { listProducts, productsPageFetchInit } from "@/lib/products-store";
 
 export const metadata: Metadata = {
-  title: "产品中心",
+  title: "Products",
   alternates: pageAlternates("/products"),
 };
 

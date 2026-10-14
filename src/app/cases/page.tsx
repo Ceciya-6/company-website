@@ -3,9 +3,9 @@ import { CasesView } from "./cases-view";
 import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "客户案例",
+  title: "Customer Cases",
   description:
-    "了解 YOMEGA 如何支持运动服品牌完成小批量启动、OEM/ODM 产品开发、质量检验与成衣交付。",
+    "How YOMEGA supports activewear brands: small-batch launches, OEM/ODM development, quality inspection and finished-garment delivery.",
   alternates: pageAlternates("/cases"),
 };
 
