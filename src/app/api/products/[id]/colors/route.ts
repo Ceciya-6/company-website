@@ -6,6 +6,7 @@ import {
   PRODUCTS_CACHE_TAG,
   uploadColorImage,
 } from "@/lib/products-store";
+import { translateColorName } from "@/lib/product-translate";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,7 +59,9 @@ export async function POST(request: NextRequest, context: RouteContext) {
       return Response.json({ ok: false, message: "图片不能超过 3.5MB。" }, { status: 400 });
     }
     const buffer = Buffer.from(await file.arrayBuffer());
-    const product = await uploadColorImage(id, name, buffer.toString("base64"), file.type, ext);
+    // 颜色名以文件名形式存进 Airtable，中文自动译为英文，未收录的词汇原样保留。
+    const enName = translateColorName(name);
+    const product = await uploadColorImage(id, enName, buffer.toString("base64"), file.type, ext);
     refreshProductPages([product.slug]);
     return Response.json({ ok: true, product });
   } catch (error) {

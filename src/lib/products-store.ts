@@ -1,4 +1,9 @@
 import { Product, ProductColor, ProductStatus, getProduct, products as fallbackProducts } from "./products";
+import {
+  translateColorName,
+  translateColorsList,
+  translateSpec,
+} from "./product-translate";
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID ?? "app1kcgOwrIxM7bip";
 const TABLE_ID = process.env.AIRTABLE_PRODUCTS_TABLE ?? "Products";
@@ -42,7 +47,7 @@ const num = (value: unknown) =>
 
 type AirtableAttachment = { id?: string; url?: string; filename?: string };
 
-/** 解析 Airtable 附件字段为 SKU 颜色；颜色名取文件名（去扩展名）。 */
+/** 解析 Airtable 附件字段为 SKU 颜色；颜色名取文件名（去扩展名）并翻译为英文。 */
 function mapColorVariants(value: unknown): ProductColor[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const colors = value
@@ -52,7 +57,7 @@ function mapColorVariants(value: unknown): ProductColor[] | undefined {
       const filename = attachment.filename ?? "";
       return {
         id: attachment.id,
-        name: filename.replace(/\.[^.]+$/, "") || filename,
+        name: translateColorName(filename.replace(/\.[^.]+$/, "") || filename),
         image: attachment.url,
       };
     })
@@ -60,9 +65,17 @@ function mapColorVariants(value: unknown): ProductColor[] | undefined {
   return colors.length > 0 ? colors : undefined;
 }
 
+const splitLines = (value: string) =>
+  value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
 export function mapRecord(record: AirtableRecord): Product {
   const fields = record.fields;
   const status = text(fields["Status"]) || "active";
+  const highlightsRaw = splitLines(text(fields["Highlights"]));
+  const highlightsEnRaw = splitLines(text(fields["Highlights EN"]));
   return {
     recordId: record.id,
     slug: text(fields["Slug"]),
@@ -70,23 +83,36 @@ export function mapRecord(record: AirtableRecord): Product {
     shortName: text(fields["Short Name"]) || text(fields["Name"]),
     image: text(fields["Image URL"]),
     alt: text(fields["Description"]),
-    highlights: text(fields["Highlights"])
-      .split("\n")
-      .map((line) => line.trim())
-      .filter(Boolean),
-    category: text(fields["Category"]),
-    fabric: text(fields["Fabric & GSM"]),
-    sizes: text(fields["Sizes"]),
-    colors: text(fields["Colors"]),
-    moq: text(fields["MOQ"]),
-    sampleDays: text(fields["Sample Days"]),
-    customOptions: text(fields["Custom Options"]),
-    sellingPoints: text(fields["Selling Points"]),
+    highlights: highlightsEnRaw.length
+      ? highlightsEnRaw
+      : highlightsRaw.map(translateSpec),
+    category: text(fields["Category EN"]) || translateSpec(text(fields["Category"])),
+    fabric: text(fields["Fabric & GSM EN"]) || translateSpec(text(fields["Fabric & GSM"])),
+    sizes: text(fields["Sizes EN"]) || translateSpec(text(fields["Sizes"])),
+    colors: text(fields["Colors EN"]) || translateColorsList(text(fields["Colors"])),
+    moq: text(fields["MOQ EN"]) || translateSpec(text(fields["MOQ"])),
+    sampleDays: text(fields["Sample Days EN"]) || translateSpec(text(fields["Sample Days"])),
+    customOptions:
+      text(fields["Custom Options EN"]) || translateSpec(text(fields["Custom Options"])),
+    sellingPoints:
+      text(fields["Selling Points EN"]) || translateSpec(text(fields["Selling Points"])),
     role: text(fields["Role"]),
     status: status as ProductStatus,
     featured: Boolean(fields["Featured"]),
     sort: num(fields["Sort"]),
     colorVariants: mapColorVariants(fields[COLOR_FIELD]),
+    nameEn: text(fields["Name EN"]),
+    shortNameEn: text(fields["Short Name EN"]),
+    categoryEn: text(fields["Category EN"]),
+    altEn: text(fields["Description EN"]),
+    highlightsEn: highlightsEnRaw.length ? highlightsEnRaw : undefined,
+    fabricEn: text(fields["Fabric & GSM EN"]),
+    sizesEn: text(fields["Sizes EN"]),
+    colorsEn: text(fields["Colors EN"]),
+    moqEn: text(fields["MOQ EN"]),
+    sampleDaysEn: text(fields["Sample Days EN"]),
+    customOptionsEn: text(fields["Custom Options EN"]),
+    sellingPointsEn: text(fields["Selling Points EN"]),
   };
 }
 
@@ -114,7 +140,55 @@ export function productToFields(input: Partial<Product>): Record<string, unknown
   put("Status", input.status);
   put("Featured", input.featured);
   put("Sort", input.sort);
+  // EN 镜像字段：只写有值的，避免 PATCH 时把已有人工译文清空。
+  if (input.nameEn) fields["Name EN"] = input.nameEn;
+  if (input.shortNameEn) fields["Short Name EN"] = input.shortNameEn;
+  if (input.categoryEn) fields["Category EN"] = input.categoryEn;
+  if (input.altEn) fields["Description EN"] = input.altEn;
+  if (input.highlightsEn?.length) fields["Highlights EN"] = input.highlightsEn.join("\n");
+  if (input.fabricEn) fields["Fabric & GSM EN"] = input.fabricEn;
+  if (input.sizesEn) fields["Sizes EN"] = input.sizesEn;
+  if (input.colorsEn) fields["Colors EN"] = input.colorsEn;
+  if (input.moqEn) fields["MOQ EN"] = input.moqEn;
+  if (input.sampleDaysEn) fields["Sample Days EN"] = input.sampleDaysEn;
+  if (input.customOptionsEn) fields["Custom Options EN"] = input.customOptionsEn;
+  if (input.sellingPointsEn) fields["Selling Points EN"] = input.sellingPointsEn;
   return fields;
+}
+
+/** 可自动翻译的字段 → EN 字段的键映射。 */
+export function translateProduct(input: Partial<Product>): Partial<Product> {
+  const out: Partial<Product> = {};
+  if (input.name !== undefined) out.nameEn = translateSpec(input.name);
+  if (input.shortName !== undefined) out.shortNameEn = translateSpec(input.shortName);
+  if (input.category !== undefined) out.categoryEn = translateSpec(input.category);
+  if (input.alt !== undefined) out.altEn = translateSpec(input.alt);
+  if (input.fabric !== undefined) out.fabricEn = translateSpec(input.fabric);
+  if (input.sizes !== undefined) out.sizesEn = translateSpec(input.sizes);
+  if (input.colors !== undefined) out.colorsEn = translateColorsList(input.colors);
+  if (input.moq !== undefined) out.moqEn = translateSpec(input.moq);
+  if (input.sampleDays !== undefined) out.sampleDaysEn = translateSpec(input.sampleDays);
+  if (input.customOptions !== undefined)
+    out.customOptionsEn = translateSpec(input.customOptions);
+  if (input.sellingPoints !== undefined)
+    out.sellingPointsEn = translateSpec(input.sellingPoints);
+  if (input.highlights !== undefined) out.highlightsEn = input.highlights.map(translateSpec);
+  return out;
+}
+
+/**
+ * 合并自动翻译结果：对每个已提供的中文字段生成 EN 值；
+ * 调用方已填的人工 EN 值优先于自动翻译。
+ */
+export function withAutoEn(input: Partial<Product>): Partial<Product> {
+  const auto = translateProduct(input);
+  const result: Record<string, unknown> = { ...auto };
+  for (const key of Object.keys(auto)) {
+    const manual = (input as Record<string, unknown>)[key];
+    if (typeof manual === "string" && manual.trim()) result[key] = manual;
+    if (Array.isArray(manual) && manual.length) result[key] = manual;
+  }
+  return result as Partial<Product>;
 }
 
 function cleanInput(value: unknown, maxLength: number) {
@@ -150,6 +224,27 @@ export function parseProductInput(value: unknown): Product | null {
     customOptions: cleanInput(input.customOptions, 500),
     sellingPoints: cleanInput(input.sellingPoints, 500),
     role: cleanInput(input.role, 40),
+    nameEn: cleanInput(input.nameEn, 200),
+    shortNameEn: cleanInput(input.shortNameEn, 200),
+    categoryEn: cleanInput(input.categoryEn, 80),
+    altEn: cleanInput(input.altEn, 2000),
+    highlightsEn: Array.isArray(input.highlightsEn)
+      ? input.highlightsEn
+          .map((item) => cleanInput(item, 200))
+          .filter(Boolean)
+          .slice(0, 10)
+      : cleanInput(input.highlightsEn, 1000)
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .slice(0, 10),
+    fabricEn: cleanInput(input.fabricEn, 200),
+    sizesEn: cleanInput(input.sizesEn, 200),
+    colorsEn: cleanInput(input.colorsEn, 200),
+    moqEn: cleanInput(input.moqEn, 80),
+    sampleDaysEn: cleanInput(input.sampleDaysEn, 80),
+    customOptionsEn: cleanInput(input.customOptionsEn, 500),
+    sellingPointsEn: cleanInput(input.sellingPointsEn, 500),
     status: (["active", "draft", "archived"].includes(String(input.status))
       ? String(input.status)
       : "active") as ProductStatus,
@@ -221,9 +316,10 @@ export async function getProductBySlug(
 }
 
 export async function createProduct(product: Product) {
+  const merged = { ...product, ...withAutoEn(product) };
   const data = await airtableRequest("", {
     method: "POST",
-    body: JSON.stringify({ typecast: true, records: [{ fields: productToFields(product) }] }),
+    body: JSON.stringify({ typecast: true, records: [{ fields: productToFields(merged) }] }),
   });
   const [record] = data.records ?? [];
   if (!record) throw new Error("Airtable did not return a record.");
@@ -231,11 +327,12 @@ export async function createProduct(product: Product) {
 }
 
 export async function updateProduct(recordId: string, patch: Partial<Product>) {
+  const merged = { ...patch, ...withAutoEn(patch) };
   const data = await airtableRequest("", {
     method: "PATCH",
     body: JSON.stringify({
       typecast: true,
-      records: [{ id: recordId, fields: productToFields(patch) }],
+      records: [{ id: recordId, fields: productToFields(merged) }],
     }),
   });
   const [record] = data.records ?? [];

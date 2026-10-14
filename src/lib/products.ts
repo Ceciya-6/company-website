@@ -28,6 +28,19 @@ export type Product = {
   status?: ProductStatus;
   featured?: boolean;
   sort?: number;
+  /** Airtable 的 * EN 镜像字段：自动翻译或人工覆盖的英文值，仅管理端使用。 */
+  nameEn?: string;
+  shortNameEn?: string;
+  categoryEn?: string;
+  altEn?: string;
+  highlightsEn?: string[];
+  fabricEn?: string;
+  sizesEn?: string;
+  colorsEn?: string;
+  moqEn?: string;
+  sampleDaysEn?: string;
+  customOptionsEn?: string;
+  sellingPointsEn?: string;
 };
 
 export const products: Product[] = [

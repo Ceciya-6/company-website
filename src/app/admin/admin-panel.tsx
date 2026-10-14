@@ -25,6 +25,19 @@ type ProductInput = {
   featured: boolean;
   sort: string;
   colorVariants: ProductColor[];
+  /** EN 覆盖值：留空时服务端按中文字段自动翻译。 */
+  nameEn: string;
+  shortNameEn: string;
+  categoryEn: string;
+  altEn: string;
+  highlightsEn: string;
+  fabricEn: string;
+  sizesEn: string;
+  colorsEn: string;
+  moqEn: string;
+  sampleDaysEn: string;
+  customOptionsEn: string;
+  sellingPointsEn: string;
 };
 
 type ProductRow = ProductInput & { sort: number };
@@ -49,34 +62,61 @@ const EMPTY_FORM: ProductInput = {
   featured: false,
   sort: "0",
   colorVariants: [],
+  nameEn: "",
+  shortNameEn: "",
+  categoryEn: "",
+  altEn: "",
+  highlightsEn: "",
+  fabricEn: "",
+  sizesEn: "",
+  colorsEn: "",
+  moqEn: "",
+  sampleDaysEn: "",
+  customOptionsEn: "",
+  sellingPointsEn: "",
 };
 
-const TEXT_FIELDS: { key: keyof ProductInput; label: string; hint?: string }[] = [
-  { key: "name", label: "名称 *", hint: "如 Seamless Yoga Set" },
+type FieldDef = {
+  key: keyof ProductInput;
+  label: string;
+  hint?: string;
+  enKey?: keyof ProductInput;
+  enKind?: "spec" | "colors";
+};
+
+const TEXT_FIELDS: FieldDef[] = [
+  { key: "name", label: "名称 *", hint: "如 Seamless Yoga Set", enKey: "nameEn" },
   { key: "slug", label: "Slug（URL）*", hint: "小写字母、数字、连字符，如 seamless-yoga-set" },
-  { key: "shortName", label: "短名称" },
-  { key: "category", label: "类别", hint: "如：瑜伽套装 / 紧身裤 / 运动内衣" },
+  { key: "shortName", label: "短名称", enKey: "shortNameEn" },
+  { key: "category", label: "类别", hint: "如：运动套装 / 紧身裤 / 运动内衣", enKey: "categoryEn" },
   { key: "image", label: "主图 URL *", hint: "/images/products/xx.jpg 或 https://..." },
-  { key: "fabric", label: "面料成分及克重", hint: "如：75% 尼龙 25% 氨纶 · 220gsm" },
-  { key: "sizes", label: "尺码", hint: "如：XS–XL，可混码" },
-  { key: "colors", label: "颜色", hint: "如：黑 / 灰 / 自定义潘通色" },
-  { key: "moq", label: "起订量", hint: "如：100 套（现款加标）" },
-  { key: "sampleDays", label: "打样周期", hint: "如：7 天（现款加标）" },
+  { key: "fabric", label: "面料成分及克重", hint: "如：75% 尼龙 25% 氨纶 · 220gsm", enKey: "fabricEn" },
+  { key: "sizes", label: "尺码", hint: "如：S,M,L,XL，可混码", enKey: "sizesEn" },
+  { key: "colors", label: "颜色", hint: "如：高级黑 / 黑咖啡，或自定义潘通色", enKey: "colorsEn", enKind: "colors" },
+  { key: "moq", label: "起订量", hint: "如：100 套（现款加标）", enKey: "moqEn" },
+  { key: "sampleDays", label: "打样周期", hint: "如：7 天（现款加标）", enKey: "sampleDaysEn" },
   { key: "sort", label: "排序（数字越小越靠前）" },
 ];
 
-const TEXTAREA_FIELDS: { key: keyof ProductInput; label: string }[] = [
-  { key: "alt", label: "详情页描述文案" },
-  { key: "highlights", label: "卖点（每行一条）" },
-  { key: "customOptions", label: "定制选项" },
-  { key: "sellingPoints", label: "可证明的卖点（1–2 个）" },
+const TEXTAREA_FIELDS: FieldDef[] = [
+  { key: "alt", label: "详情页描述文案", enKey: "altEn" },
+  { key: "highlights", label: "卖点（每行一条）", enKey: "highlightsEn" },
+  { key: "customOptions", label: "定制选项", enKey: "customOptionsEn" },
+  { key: "sellingPoints", label: "可证明的卖点（1–2 个）", enKey: "sellingPointsEn" },
 ];
 
 const inputCls =
   "w-full rounded-sm border border-brand-border bg-white px-3 py-2 text-sm outline-none focus:border-brand-accent";
 
 function toForm(product: ProductRow): ProductInput {
-  return { ...product, highlights: product.highlights, sort: String(product.sort ?? 0) };
+  return {
+    ...product,
+    highlights: product.highlights,
+    highlightsEn: Array.isArray((product as Record<string, unknown>).highlightsEn)
+      ? ((product as Record<string, unknown>).highlightsEn as string[]).join("\n")
+      : String((product as Record<string, unknown>).highlightsEn ?? ""),
+    sort: String(product.sort ?? 0),
+  };
 }
 
 function fromForm(form: ProductInput) {
@@ -95,6 +135,18 @@ function fromForm(form: ProductInput) {
     sampleDays: form.sampleDays,
     customOptions: form.customOptions,
     sellingPoints: form.sellingPoints,
+    nameEn: form.nameEn,
+    shortNameEn: form.shortNameEn,
+    categoryEn: form.categoryEn,
+    altEn: form.altEn,
+    highlightsEn: form.highlightsEn,
+    fabricEn: form.fabricEn,
+    sizesEn: form.sizesEn,
+    colorsEn: form.colorsEn,
+    moqEn: form.moqEn,
+    sampleDaysEn: form.sampleDaysEn,
+    customOptionsEn: form.customOptionsEn,
+    sellingPointsEn: form.sellingPointsEn,
     role: form.role || undefined,
     status: form.status,
     featured: form.featured,
@@ -108,6 +160,32 @@ const STATUS_LABEL: Record<string, string> = {
   archived: "已下架",
 };
 
+/** 英文覆盖输入框：placeholder 与提示行展示接口返回的自动翻译建议。 */
+function EnInput({
+  value,
+  suggestion,
+  onChange,
+}: {
+  value: string;
+  suggestion: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <>
+      <input
+        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={suggestion ? `建议：${suggestion}` : "英文值（留空则按上方内容自动翻译）"}
+        className="mt-1 w-full rounded-sm border border-dashed border-brand-border bg-white px-3 py-2 text-sm outline-none focus:border-brand-accent"
+      />
+      {suggestion && !value && (
+        <span className="mt-1 block text-[11px] text-brand-muted">自动翻译：{suggestion}</span>
+      )}
+    </>
+  );
+}
+
 export function AdminPanel() {
   const [token, setToken] = useState("");
   const [tokenDraft, setTokenDraft] = useState("");
@@ -119,6 +197,7 @@ export function AdminPanel() {
   const [colorName, setColorName] = useState("");
   const [colorFile, setColorFile] = useState<File | null>(null);
   const [colorBusy, setColorBusy] = useState(false);
+  const [suggestions, setSuggestions] = useState<Record<string, string>>({});
 
   const api = useCallback(
     async (path: string, init: RequestInit = {}) => {
@@ -175,6 +254,33 @@ export function AdminPanel() {
   useEffect(() => {
     if (token) load();
   }, [token, load]);
+
+  /** 编辑表单时，对已填写的中文/英文字段做去抖的自动翻译建议。 */
+  useEffect(() => {
+    if (!editing) return;
+    const fields = [...TEXT_FIELDS, ...TEXTAREA_FIELDS].filter((field) => field.enKey);
+    const timer = setTimeout(() => {
+      void (async () => {
+        const entries = await Promise.all(
+          fields.map(async (field) => {
+            const enKey = field.enKey as string;
+            const value = String(editing[field.key] ?? "").trim();
+            if (!value) return [enKey, ""];
+            try {
+              const data = await api(
+                `/api/products/translate?kind=${field.enKind ?? "spec"}&text=${encodeURIComponent(value)}`,
+              );
+              return [enKey, String(data.translation ?? "")];
+            } catch {
+              return [enKey, ""];
+            }
+          }),
+        );
+        setSuggestions(Object.fromEntries(entries));
+      })();
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [editing, api]);
 
   const saveToken = (event: FormEvent) => {
     event.preventDefault();
@@ -446,6 +552,15 @@ export function AdminPanel() {
                     {field.hint && (
                       <span className="mt-1 block text-[11px] text-brand-muted">{field.hint}</span>
                     )}
+                    {field.enKey && (
+                      <EnInput
+                        value={String(editing[field.enKey] ?? "")}
+                        suggestion={suggestions[field.enKey] ?? ""}
+                        onChange={(value) =>
+                          setEditing({ ...editing, [field.enKey as string]: value } as ProductInput)
+                        }
+                      />
+                    )}
                   </label>
                 ))}
 
@@ -460,6 +575,15 @@ export function AdminPanel() {
                       }
                       className={`mt-1 ${inputCls}`}
                     />
+                    {field.enKey && (
+                      <EnInput
+                        value={String(editing[field.enKey] ?? "")}
+                        suggestion={suggestions[field.enKey] ?? ""}
+                        onChange={(value) =>
+                          setEditing({ ...editing, [field.enKey as string]: value } as ProductInput)
+                        }
+                      />
+                    )}
                   </label>
                 ))}
 
@@ -547,7 +671,7 @@ export function AdminPanel() {
                           type="text"
                           value={colorName}
                           onChange={(event) => setColorName(event.target.value)}
-                          placeholder="如：高级黑"
+                          placeholder="如：高级黑（将自动译为 Premium Black）"
                           className={`mt-1 ${inputCls}`}
                         />
                       </label>
