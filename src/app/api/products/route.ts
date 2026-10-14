@@ -15,6 +15,7 @@ function refreshProductPages(slugs: string[] = []) {
   revalidateTag(PRODUCTS_CACHE_TAG, "default");
   revalidatePath("/", "page");
   revalidatePath("/products", "page");
+  revalidatePath("/sitemap.xml");
   for (const slug of slugs) revalidatePath(`/products/${slug}`, "page");
 }
 
