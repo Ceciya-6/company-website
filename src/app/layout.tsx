@@ -24,6 +24,16 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    type: "website",
+    siteName: "YOMEGA",
+    locale: "zh_CN",
+    alternateLocale: ["en_US"],
+    images: [{ url: "/images/logo-yomega.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
   icons: {
     icon: [{ url: "/images/favicon.png", type: "image/png" }],
     shortcut: "/images/favicon.png",

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { ContactView } from "./contact-view";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "获取询价",
   description:
     "向 YOMEGA 提交运动服 OEM/ODM 询价，并了解认证、包装、物流、交易条件与响应承诺。",
+  alternates: pageAlternates("/contact"),
 };
 
 export default async function ContactPage({

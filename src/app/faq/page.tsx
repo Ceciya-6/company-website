@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { FaqExplorer } from "@/components/faq-explorer";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "常见问题",
   description:
     "查看 YOMEGA 关于运动服 OEM/ODM 起订量、价格、打样、生产、质量、面料、运输、合规和品牌规模化的常见问题。",
+  alternates: pageAlternates("/faq"),
 };
 
 export default function FaqPage() {
