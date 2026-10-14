@@ -13,414 +13,414 @@ export type FaqCategory = {
 export const faqCategories: FaqCategory[] = [
   {
     "number": "01",
-    "title": "入门",
-    "description": "如何开始与我们合作以及首先需要发送哪些信息。",
+    "title": "Getting Started",
+    "description": "How to start working with us and what to send first.",
     "items": [
       {
-        "question": "我该如何开始与您合作？",
-        "answer": "请提供参考图片、您的logo（AI或PNG格式）以及大致数量。无需提供技术资料包——我们可以指导您选择面料、尺寸和制作细节。我们会在工作日24小时内回复您面料选项、价格和样品制作时间表。"
+        "question": "How do I get started working with you?",
+        "answer": "Send reference images, your logo (AI or PNG) and an estimated quantity. No tech pack is needed — we guide you through fabric selection, sizing and construction details. We reply within 24 business hours with fabric options, pricing and a sampling timeline."
       },
       {
-        "question": "我下单需要技术资料包吗？",
-        "answer": "不。我们很多客户都是新品牌，只有参考照片或Pinterest图板。我们可以根据您提供的参考资料、我们的素材库以及您的版型偏好，与您一起制作技术包。技术包制作包含在开发流程中，无需额外付费。"
+        "question": "Do I need a tech pack to place an order?",
+        "answer": "No. Many of our clients are new brands with nothing more than reference photos or a Pinterest board. We build the tech pack together with you, based on your references, our fabric library and your fit preferences. Tech pack development is included in the development process at no extra charge."
       },
       {
-        "question": "我第一次咨询时应该包含哪些信息？",
-        "answer": "有四件事能帮助我们更快回复：（1）参考图片或您喜欢的款式名称；（2）预估数量；（3）目标市场（以便我们推荐合适的面料和产品）；（4）如果您已有logo，请提供logo文件。即使只提供其中一两项，也足以让我们开始着手处理。"
+        "question": "What should I include in my first inquiry?",
+        "answer": "Four things help us respond faster: (1) reference images or the names of styles you like; (2) estimated quantity; (3) target market, so we can recommend suitable fabrics and products; (4) your logo file, if you already have one. Even one or two of these are enough for us to get started."
       },
       {
-        "question": "你们是否与欧洲和北美以外的品牌合作？",
-        "answer": "是的。我们的客户遍布欧洲、北美、拉丁美洲、澳大利亚、中东和东南亚等30多个国家。我们拥有出口许可证，可以处理所有出口文件，并将货物运送到世界任何港口。"
+        "question": "Do you work with brands outside Europe and North America?",
+        "answer": "Yes. Our clients span more than 30 countries across Europe, North America, Latin America, Australia, the Middle East and Southeast Asia. We hold export licenses, handle all export documentation and ship to any port in the world."
       }
     ]
   },
   {
     "number": "02",
-    "title": "最低起订量及定价",
-    "description": "实际最低订货量、影响定价的因素以及混合订单的运作方式。",
+    "title": "MOQ & Pricing",
+    "description": "Real minimums, what drives pricing, and how mixed orders work.",
     "items": [
       {
-        "question": "你们的最小起订量是多少？",
-        "answer": "具体数量取决于订单类型。现货款式（含您的logo）：最低起订量100套，允许混色混码。全定制开发：每款每色300-500件。定制潘通色：每款每色300-500件。样品：1-2件，样品费可在批量订购后退还。"
+        "question": "What is your minimum order quantity?",
+        "answer": "It depends on the order type. Stock styles with your logo: MOQ 100 sets, with mixed colors and sizes allowed. Fully custom development: 300–500 pieces per style per color. Custom Pantone colors: 300–500 pieces per style per color. Samples: 1–2 pieces, with the sample fee refundable after a bulk order."
       },
       {
-        "question": "我可以在最低起订量范围内混搭尺寸和颜色吗？",
-        "answer": "对于现货款式：可以，100套以内，尺寸和颜色混搭均可。对于定制开发：最低起订量按款式和颜色计算，例如，如果您需要3种颜色，则每款每色需要300-500件。同色系的不同尺寸可以自由混搭。"
+        "question": "Can I mix sizes and colors within the MOQ?",
+        "answer": "For stock styles: yes — within 100 sets, sizes and colors can be mixed freely. For custom development, the MOQ is calculated per style and color: if you want 3 colors, that means 300–500 pieces per style per color. Different sizes within the same color can be mixed freely."
       },
       {
-        "question": "大宗订单有价格优惠吗？",
-        "answer": "是的。单价在订购数量达到500件、1000件、3000件以及5000件以上时会有显著下降。请告知您的目标订购数量，我们将提供所有适用订购数量的报价，以便您在最终决定前了解价格曲线。老客户可享受额外2-5% 的忠诚客户折扣。"
+        "question": "Are there volume discounts on larger orders?",
+        "answer": "Yes. Unit prices drop significantly at 500, 1,000, 3,000 and 5,000+ pieces. Tell us your target quantity and we will quote across all applicable volumes so you can see the full price curve before deciding. Returning clients receive an additional 2–5% loyalty discount."
       },
       {
-        "question": "我可以索取一份包含价格信息的目录吗？",
-        "answer": "我们可以发送包含SKU编码和规格的产品目录PDF文件。由于价格取决于面料选择、logo制作方式、数量和包装等因素，因此我们会根据具体询价进行报价——一成不变的价格表容易造成误解。请告知您的具体规格，我们将在24小时内回复。"
+        "question": "Can I request a catalog with prices?",
+        "answer": "We can send a product catalog PDF with SKU codes and specifications. Because pricing depends on fabric choices, logo application, quantity and packaging, we quote per specific inquiry — a one-size-fits-all price list tends to mislead. Share your specs and we will reply within 24 hours."
       }
     ]
   },
   {
     "number": "03",
-    "title": "采样与开发",
-    "description": "交货周期、成本、修改次数和参考服装匹配。",
+    "title": "Sampling & Development",
+    "description": "Lead times, costs, revision rounds and reference-garment matching.",
     "items": [
       {
-        "question": "采样需要多长时间？",
-        "answer": "带有您公司标志的现货样品：7天。定制OEM/ODM开发样品：10-15天，具体取决于面料供应情况。样品费需预先支付，但会在您下单后退还。修改免费，直至您确认为止。"
+        "question": "How long does sampling take?",
+        "answer": "Stock samples with your logo: 7 days. Custom OEM/ODM development samples: 10–15 days, depending on fabric availability. Sample fees are prepaid but refunded once you place an order. Revisions are free until you approve."
       },
       {
-        "question": "样品价格是多少？",
-        "answer": "现货样品的价格通常为每件30至80美元，具体价格取决于面料和标志制作方式。定制开发样品的价格为每件80至150美元。样品费可在您的首笔批量订单中全额退还——请将其视为定金，而非费用。"
+        "question": "How much do samples cost?",
+        "answer": "Stock samples typically run US$30–80 per piece, depending on fabric and logo application. Custom development samples run US$80–150 per piece. Sample fees are fully refunded against your first bulk order — treat them as a deposit, not a cost."
       },
       {
-        "question": "如果样本不对怎么办？",
-        "answer": "修改免费。我们会不断迭代——更换面料、调整版型、更改logo位置等等，只要您需要，我们都会尽力满足，直到您满意为止。只有在您完全满意后，才需要进行批量生产。大多数订单需要1-2轮样品制作；复杂的定制订单可能需要3轮。"
+        "question": "What if the sample isn't right?",
+        "answer": "Revisions are free. We iterate — changing fabrics, adjusting fits, moving logo placement — until you are satisfied, however many rounds that takes. Bulk production only starts after your full approval. Most orders need 1–2 sampling rounds; complex custom orders may need 3."
       },
       {
-        "question": "您能找到与参考服装或竞品相匹配的产品吗？",
-        "answer": "是的。如果您能提供实物样品或参考服装的高清照片，我们可以匹配面料、结构和版型。这是最快的开发途径之一——通常10天内即可完成首件样品，并提供2-3种面料供您选择比较。"
+        "question": "Can you match a reference garment or a competitor's product?",
+        "answer": "Yes. Send a physical sample or high-resolution photos of the reference garment and we can match fabric, construction and fit. This is one of the fastest development routes — a first sample is usually ready within 10 days, with 2–3 fabric options to compare."
       }
     ]
   },
   {
     "number": "04",
-    "title": "生产与质量控制",
-    "description": "批量交货周期、更新、AQL 标准和缺陷处理。",
+    "title": "Production & Quality Control",
+    "description": "Bulk lead times, updates, AQL standards and defect handling.",
     "items": [
       {
-        "question": "批量生产需要多长时间？",
-        "answer": "带有您公司标志的现货款式交货期为 20-25天；完全定制的开发交货期为30-35天（自确认订单起），具体时间取决于数量、面料交货时间和季节性因素。如果您的生产周期与中国新年（1月下旬至2月）和黄金周（10月初）重叠，则需额外增加 10-15天。我们会在形式发票（PI） 中注明。"
+        "question": "How long does bulk production take?",
+        "answer": "Stock styles with your logo: 20–25 days. Fully custom development: 30–35 days from order confirmation, depending on quantity, fabric lead time and seasonality. If your production window overlaps Chinese New Year (late January to February) or Golden Week (early October), add 10–15 days. We note this in the pro forma invoice (PI)."
       },
       {
-        "question": "我会收到生产进度更新吗？",
-        "answer": "是的。一旦您的批量订单进入生产阶段，您将每7天收到一次照片更新—涵盖裁剪、缝纫、印刷、质检和包装等各个环节。您始终了解订单的进展情况。从支付定金到发货，绝无任何信息缺失。"
+        "question": "Will I receive production updates?",
+        "answer": "Yes. Once your bulk order enters production, you receive photo updates every 7 days — covering cutting, sewing, printing, quality inspection and packing. You always know where your order stands. Nothing goes silent between deposit and shipment."
       },
       {
-        "question": "你们如何处理质量控制问题？",
-        "answer": "每笔订单都经过三道质量控制工序：缝纫过程中的在线检验、工厂最终检验以及发货前厦门仓库的复检。不良率目标低于2%。如果您需要AQL 2.5或更严格的检验标准，我们可以安排第三方质检机构（如SGS、Intertek），费用由您承担。"
+        "question": "How do you handle quality control?",
+        "answer": "Every order passes three quality control stages: inline inspection during sewing, a final factory inspection, and a re-inspection at our Xiamen warehouse before shipment. Our defect rate target is under 2%. If you need AQL 2.5 or stricter standards, we can arrange third-party inspection (e.g. SGS, Intertek) at your cost."
       },
       {
-        "question": "如果批量订单中有缺陷怎么办？",
-        "answer": "我们会在装货前的质量控制环节发现任何缺陷产品，并拍照发送给您。我们会选择更换产品或从尾款中扣除相应金额。如果产品到达您仓库后才发现缺陷，请在收到货物后30天内发送照片，我们会将受影响产品的款项从您的下次订单中扣除。"
+        "question": "What happens if there are defects in a bulk order?",
+        "answer": "We catch defective pieces during pre-shipment quality control and send you photos. We replace the pieces or deduct the amount from the balance payment. If defects are only discovered after arrival at your warehouse, send photos within 30 days of receipt and we will credit the affected items against your next order."
       }
     ]
   },
   {
     "number": "05",
-    "title": "标志 包装和定制",
-    "description": "标志设计、定制潘通色卡、包装和面料开发。",
+    "title": "Logo, Packaging & Customization",
+    "description": "Logo methods, custom Pantone colors, packaging and fabric development.",
     "items": [
       {
-        "question": "你们支持哪些标志设计方法？",
-        "answer": "热转印、硅胶3D打印、刺绣、升华印花、提花织造（可实现无缝）、织唛和吊牌品牌标识。不同的面料适合不同的工艺——我们会在打样过程中根据您选择的面料推荐最佳工艺。样品制作前提供免费的logo效果图。"
+        "question": "Which logo application methods do you support?",
+        "answer": "Heat transfer, 3D silicone printing, embroidery, sublimation printing, jacquard weaving (seamless-compatible), woven labels and hangtag branding. Different fabrics suit different methods — we recommend the best option for your chosen fabric during sampling. Free logo mockups are provided before sampling starts."
       },
       {
-        "question": "你们可以定制潘通色号吗？",
-        "answer": "是的。定制潘通色卡配色需要单独染色，因此每款每色的最低起订量为300-500件。我们通常会要求您提供潘通TCX或TPG色号。如果您只有参考图片，我们可以在生产前寄送色卡（染色布料样品）供您确认。"
+        "question": "Can you do custom Pantone colors?",
+        "answer": "Yes. Custom Pantone color matching requires a dedicated dye run, so the MOQ is 300–500 pieces per style per color. We usually ask for a Pantone TCX or TPG code. If you only have reference images, we can mail color swatches (dyed fabric samples) for approval before production."
       },
       {
-        "question": "你们提供定制包装吗？",
-        "answer": "是的。我们提供定制吊牌、织唛、洗标、品牌塑料袋、包装纸、纸盒和外包装箱，所有包装材料均可印上您的品牌标识。我们致力于让您的产品做好零售或电商销售的准备。如有需要，样品阶段可提供包装样品。"
+        "question": "Do you offer custom packaging?",
+        "answer": "Yes. We offer custom hangtags, woven labels, care labels, branded poly bags, wrapping paper, boxes and outer cartons — all printable with your brand. We aim to have your products retail- or e-commerce-ready. Packaging samples can be provided at the sampling stage if needed."
       },
       {
-        "question": "我可以开发自己的面料吗？",
-        "answer": "我们专营尼龙/氨纶和涤纶/氨纶运动服面料，包括手感极佳的94/6混纺面料，克重范围为220-320克/平方米。我们拥有超过40种库存面料，可根据压缩性、拉伸性、后整理工艺和最终用途，快速进行面料打样和筛选。"
+        "question": "Can I develop my own fabric?",
+        "answer": "We specialize in nylon/spandex and polyester/spandex activewear fabrics, including a buttery 94/6 blend, with GSM ranges of 220–320 g/m². With over 40 stock fabrics, we can sample and screen quickly by compression, stretch, finish and end use."
       }
     ]
   },
   {
     "number": "06",
-    "title": "付款 运输和出口",
-    "description": "付款方式、全球运输、海关和认证。",
+    "title": "Payment, Shipping & Export",
+    "description": "Payment methods, global shipping, customs and certifications.",
     "items": [
       {
-        "question": "你们提供哪些付款方式？",
-        "answer": "样品：预付100%货款。大货（新客户）：确认形式发票后支付30%定金，发货前支付70%尾款。大货（老客户）：支付30%定金，凭提单副本支付70%尾款。我们接受电汇（T/T）、即期信用证（适用于3万美元以上的订单）、PayPal（适用于样品和小额订单）以及西联汇款。"
+        "question": "What payment methods do you offer?",
+        "answer": "Samples: 100% prepaid. Bulk (new clients): 30% deposit after PI confirmation, 70% balance before shipment. Bulk (returning clients): 30% deposit, 70% against a copy of the bill of lading. We accept T/T wire transfer, sight L/C (for orders above US$30,000), PayPal (for samples and small orders) and Western Union."
       },
       {
-        "question": "你们提供全球配送服务吗？",
-        "answer": "是的。我们从厦门港（主要港口）或深圳港（如有需要）发货。空运和海运均可。我们支持FOB、EXW、CIF、DDP等所有国际贸易术语。DDP情况下，我们会在目的地办理清关手续；FOB情况下，您需要自行安排货运代理。"
+        "question": "Do you ship worldwide?",
+        "answer": "Yes. We ship from Xiamen (our primary port) or Shenzhen if needed. Both air and sea freight are available. We support all major Incoterms including FOB, EXW, CIF and DDP. Under DDP we handle customs clearance at the destination; under FOB you arrange your own freight forwarder."
       },
       {
-        "question": "您能协助我办理我国的清关手续吗？",
-        "answer": "对于DDP订单，是的——我们与货运代理合作，负责门到门送货，包括目的地海关清关。对于FOB订单，我们提供所有必要的出口单据（商业发票、装箱单、原产地证书、提单），您负责办理进口清关。我们很乐意提前提供单据样本，以便您的报关行进行预审。"
+        "question": "Can you help with customs clearance in my country?",
+        "answer": "For DDP orders, yes — we work with freight partners for door-to-door delivery including destination customs clearance. For FOB orders, we provide all necessary export documents (commercial invoice, packing list, certificate of origin, bill of lading) and you handle import clearance. We are happy to share sample documents in advance so your broker can pre-review them."
       },
       {
-        "question": "你持有哪些证书？",
-        "answer": "我们符合BSCI（商业社会责任倡议）的道德采购和劳工标准要求、欧盟出口的无偶氮染料合规要求以及欧盟化学品安全REACH合规要求。完整的审核文件可在报价阶段应要求提供。"
+        "question": "Which certificates do you hold?",
+        "answer": "We meet BSCI (Business Social Compliance Initiative) requirements for ethical sourcing and labor standards, azo-free dye compliance for EU exports and REACH chemical safety compliance. Full audit documentation is available on request at the quotation stage."
       }
     ]
   },
   {
     "number": "07",
-    "title": "信任与工厂验证",
-    "description": "如何验证工厂的真实性、安排参观以及处理纠纷。",
+    "title": "Trust & Factory Verification",
+    "description": "How to verify a real factory, book a visit and handle disputes.",
     "items": [
       {
-        "question": "如何确认 YOMEGA 是真正的工厂而不是贸易代理商？",
-        "answer": "要求提供生产车间实时视频通话、厦门美佳服装有限公司的直接出口单据，以及诸如 Goosgym Sports、Powercut Clothing、Grazi Marotti Sportswear、Motivelli 和 KRAG 等知名客户案例。贸易商通常可以展示制作精良的视频，但无法实时演示裁剪、缝纫、质检和包装等环节，同时核对工厂的出口单据。完整清单请参阅《如何甄选优质运动服工厂》。"
+        "question": "How do I confirm YOMEGA is a real factory and not a trading agent?",
+        "answer": "Ask for a live video call from the production floor, direct export documentation from Xiamen Mega Garment Co., Ltd., and named client cases such as Goosgym Sports, Powercut Clothing, Grazi Marotti Sportswear, Motivelli and KRAG. Trading companies can show polished videos but cannot demonstrate cutting, sewing, inspection and packing in real time while matching factory export records. See the full checklist in 'How to Choose a Good Activewear Factory'."
       },
       {
-        "question": "我可以参观贵厂吗？参观流程和时间安排是怎样的？",
-        "answer": "是的。标准的参观行程为1-2天，地点在我们厦门总部，主要考察裁剪、缝纫、质检、包装和展厅。如有需要，我们可以安排参观义乌无缝生产线；厦门仍然是主要的裁剪缝纫、质检、包装和出口基地。理想情况下，请提前两周通知，最短一周。Motivelli曾到访厦门，并在48小时内签署了合同；请参阅案例14：Motivelli工厂参观。"
+        "question": "Can I visit your factory? What does a visit look like and how far ahead should I book?",
+        "answer": "Yes. A standard visit runs 1–2 days at our Xiamen headquarters, covering cutting, sewing, quality inspection, packing and the showroom. On request we can also arrange a visit to our Yiwu seamless production line; Xiamen remains the main base for cut-and-sew, inspection, packing and export. Ideally give us two weeks' notice, one week minimum. Motivelli visited Xiamen and signed the contract within 48 hours — see Case 14: the Motivelli factory visit."
       },
       {
-        "question": "直接与 YOMEGA 合作和通过阿里巴巴金牌供应商代理商合作，真正的区别是什么？",
-        "answer": "金牌供应商徽章仅验证阿里巴巴的付费会员身份和交易记录，并不代表工厂所有权。直接与 YOMEGA 合作意味着您的客户团队将直接对接生产环节，出口文件使用我们自己的许可证，AQL 2.5检验由我们内部完成，且无需支付15-25% 的贸易商佣金。但相应的，您需要遵守我们的流程，并且起订量为100 套，而非依赖贸易商的灵活承诺。"
+        "question": "What is the real difference between working with YOMEGA directly and an Alibaba Gold Supplier agent?",
+        "answer": "A Gold Supplier badge verifies paid Alibaba membership and transaction history — not factory ownership. Working with YOMEGA directly means your client team talks straight to production, export documents use our own license, AQL 2.5 inspection is done in-house, and there is no 15–25% trader commission. In return, you follow our process and accept our MOQs (e.g. 100 sets) rather than a trader's flexible promises."
       },
       {
-        "question": "我可以在抽样前获得工厂照片、视频参观或第三方审核报告吗？",
-        "answer": "是的。我们会分享未经编辑的工厂车间照片，并可安排现场视频参观。在样品制作前，您可以签署保密协议（NDA）查看 BSCI 和 OEKO-TEX认证文件。如果您的品牌需要 SGS、Bureau Veritas 或 Intertek 的认证，我们可以接待第三方审核团队；我们只保护其他客户的生产细节。"
+        "question": "Can I get factory photos, a video tour or third-party audit reports before sampling?",
+        "answer": "Yes. We share unedited workshop photos and can arrange a live video tour. Before sampling, you can sign an NDA to review our BSCI and OEKO-TEX certification documents. If your brand requires verification by SGS, Bureau Veritas or Intertek, we can host third-party audit teams — we only protect other clients' production details."
       },
       {
-        "question": "如果我是第一次进口，没有任何采购经验怎么办？",
-        "answer": "我们指导初创企业创始人了解国际贸易术语解释通则 （Incoterms）、技术包解读、参考照片制作、海关文件和运输方案。Goosgym Sports 最初没有任何工厂合作关系，从最初的洽谈到最终拥有一个40英尺的集装箱，仅用了12周时间；参见案例 10：Goosgym 荷兰。"
+        "question": "What if this is my first import and I have no sourcing experience?",
+        "answer": "We guide startup founders through Incoterms, tech pack reading, reference photo briefs, customs documents and shipping options. Goosgym Sports started with no factory relationships and went from first inquiry to a full 40-foot container in just 12 weeks — see Case 10: Goosgym Netherlands."
       },
       {
-        "question": "如果生产过程中出现问题，你们如何处理纠纷？",
-        "answer": "我们会记录问题发生地点，提供照片证据，提出返工、更换或退款方案，并更新质量控制清单，以防止类似问题再次发生。我们的目标是在面料接收、生产过程中或最终包装阶段发现问题，而不是在发货后才发现。如果缺陷率超过 AQL 2.5 的阈值，我们将暂停发货，直至问题解决。"
+        "question": "How do you handle disputes if something goes wrong in production?",
+        "answer": "We log where the issue occurred, provide photo evidence, propose rework, replacement or refund options, and update the QC checklist to prevent recurrence. Our goal is to catch problems at fabric intake, in production or at final packing — not after shipment. If the defect rate exceeds AQL 2.5 thresholds, we hold the shipment until the issue is resolved."
       },
       {
-        "question": "如果我支付尾款后，批量订单的质量控制出现问题，你们的退款政策是什么？",
-        "answer": "对于新客户，70%的尾款仅在货物通过检验合格后支付。如果货物未通过我们的AQL 2.5最终检验，我们将扣留货物并进行整改后再发货。如果经核实发现到货问题，我们将更换严重缺陷产品；对于重大缺陷，通常会给予退款或在下次生产中更换；对于轻微缺陷，我们将根据AQL容差标准进行复核。"
+        "question": "What is your refund policy if QC issues appear in a bulk order after I pay the balance?",
+        "answer": "For new clients, the 70% balance is only paid after goods pass inspection. If goods fail our AQL 2.5 final inspection, we hold and rework them before shipping. If verified issues are found after arrival, we replace critically defective pieces; for major defects we typically offer a refund or remake against your next production; for minor defects we re-inspect against AQL tolerances."
       }
     ]
   },
   {
     "number": "08",
-    "title": "单价之外的实际成本计算",
-    "description": "FOB包含哪些内容、隐藏费用、付款方式和退款政策？",
+    "title": "True Cost Beyond Unit Price",
+    "description": "What FOB covers, hidden fees, payment terms and refund policies.",
     "items": [
       {
-        "question": "FOB价格实际包含哪些内容，不包含哪些内容？",
-        "answer": "厦门离岸价包含面料、辅料、人工、AQL 2.5检验、基本塑料袋和纸箱包装、工厂装货以及中国出口单证。但不包含国际运费、目的地关税、增值税、最后一公里配送、定制吊牌、织唛或快递样品运费。有关运输条款，请参阅我们的FOB CIF DDP指南。"
+        "question": "What does the FOB price actually include and exclude?",
+        "answer": "FOB Xiamen includes fabric, trims, labor, AQL 2.5 inspection, basic polybag and carton packing, factory loading and Chinese export documentation. It does not include international freight, destination duties, VAT, last-mile delivery, custom hangtags, woven labels or express sample shipping. See our FOB CIF DDP guide for shipping terms."
       },
       {
-        "question": "除了单价之外，我还应该预留哪些隐性成本？",
-        "answer": "预算应包含样品费、修改样品费、快递费、定制包装费、潘通色卡费用、可能的版型调整费以及目的地关税/增值税。一个合理的首套胶囊系列预算应包含服装成本以及这些辅助费用，以免日后单价超出预期。"
+        "question": "Beyond the unit price, what hidden costs should I budget for?",
+        "answer": "Budget for sampling fees, revised sample fees, courier charges, custom packaging, Pantone dye runs, possible fit-adjustment charges and destination duties/VAT. A sensible first capsule budget includes the garments plus these ancillary costs, so the unit price does not surprise you later."
       },
       {
-        "question": "每件5美元的运动服和每件15美元的运动服，实际成本差别有多大？",
-        "answer": "一件5美元的FOB服装通常意味着基本的涤纶-氨纶混纺面料、简单的裁剪缝制工艺、标准色号和较为宽松的检验标准。而一件15美元的FOB服装则可能采用94/6聚酰胺-氨纶混纺面料、无缝或全成型工艺、潘通色卡认证、AQL 2.5检验标准以及更严格的版型设计。面料质量和质量控制是造成价格差异的主要原因。"
+        "question": "How big is the real cost difference between a $5 activewear piece and a $15 one?",
+        "answer": "A $5 FOB garment usually means basic polyester-spandex fabric, simple cut-and-sew construction, standard colors and looser inspection. A $15 FOB garment can mean 94/6 polyamide-spandex fabric, seamless or fully-fashioned construction, Pantone-matched colors, AQL 2.5 inspection and more refined pattern work. Fabric quality and quality control account for most of the difference."
       },
       {
-        "question": "我可以用PayPal、Wise或信用卡支付样品费吗？",
-        "answer": "样品费用低于 500美元，我们可以接受 PayPal（需加收手续费）或Wise 付款。大宗订单的定金和尾款通常通过银行转账支付，因为这是商业交易。许多新客户最初会选择 PayPal 支付样品费，之后再转为大宗订单的银行转账。"
+        "question": "Can I pay sample fees by PayPal, Wise or credit card?",
+        "answer": "For sample fees below US$500 we accept PayPal (with a surcharge) or Wise. Bulk deposits and balances go by bank transfer, as this is standard for commercial transactions. Many new clients start with PayPal for samples and switch to bank transfer for bulk orders."
       },
       {
-        "question": "您的定金比例和尾款支付时间分别是多少？",
-        "answer": "新客户的标准付款条款为：面料采购前支付30%的定金，检验合格后发货前支付剩余70%的款项。老客户在成功合作几个季度后可协商调整付款条款。由于面料和辅料需预先采购，因此我们不提供30天净期付款。"
+        "question": "What are your deposit ratio and balance payment timing?",
+        "answer": "Standard terms for new clients: 30% deposit before fabric purchasing, 70% balance after inspection and before shipment. Returning clients can negotiate adjusted terms after several successful quarters. Because fabric and trims are purchased upfront, we do not offer net-30 terms."
       },
       {
-        "question": "如果我的品牌在订单进行到一半时无法继续，我的订金会怎样？",
-        "answer": "这取决于生产阶段。在裁剪面料之前，我们会退还尚未用于面料或辅料的款项。裁剪或批量生产开始后，定金涵盖已投入的材料和人工成本，但我们会尽可能将剩余价值计入未来的订单。我们将其视为成本回收，而非惩罚。"
+        "question": "What happens to my deposit if my brand cannot continue mid-order?",
+        "answer": "It depends on the production stage. Before fabrics are cut, we refund whatever has not been spent on fabric or trims. Once cutting or bulk sewing has started, the deposit covers materials and labor already invested, but we credit any remaining value toward a future order wherever possible. We treat it as cost recovery, not a penalty."
       },
       {
-        "question": "如何避免在本国被收取意外的关税？",
-        "answer": "发货前，请您的报关行确认海关编码和关税税率，然后根据实际情况选择FOB、CIF或DDP。FOB条款的工厂发票金额最低，但您需要自行承担进口成本。DDP条款前期投入较高，但对于小型Shopify卖家或首次进口商而言，其可预测性更高。"
+        "question": "How do I avoid unexpected tariffs in my country?",
+        "answer": "Before shipping, have your broker confirm the HS code and duty rate, then choose FOB, CIF or DDP accordingly. FOB keeps the factory invoice amount lowest but you carry the import costs. DDP costs more upfront but is more predictable for small Shopify sellers or first-time importers."
       }
     ]
   },
   {
     "number": "09",
-    "title": "速度 交货时间和重新订购的现实",
-    "description": "加急生产、合理的工期、面料储备和补货速度。",
+    "title": "Speed, Lead Times & Reorder Reality",
+    "description": "Rush production, realistic timelines, fabric reserves and restock speed.",
     "items": [
       {
-        "question": "你们可以加急生产吗？加急费用和风险是多少？",
-        "answer": "是的，但仅限于技术允许的范围内。使用标准面料和带有logo的定制项目，有时可以加急处理，大约需要4-6周，但需额外收费；定制Pantone色卡或复杂版型的定制项目，加急处理时间不应少于6周。加急处理可能会减少色卡修改时间或缩短工期缓冲，因此我们在接受订单前会明确告知您相关风险。"
+        "question": "Can you expedite production? What are the rush fees and risks?",
+        "answer": "Yes, within technical limits. Stock-fabric projects with logos can sometimes be rushed to about 4–6 weeks for an extra fee; custom Pantone colors or complex constructions should not be rushed below 6 weeks. Expediting can compress color-approval windows and buffer time, so we explain the risks clearly before accepting."
       },
       {
-        "question": "为什么工厂标明的交货期是8周，但实际却需要12周？",
-        "answer": "许多报价仅包含批量生产，不包括打样、潘通色卡修改、出口文件、检验和装运准备。我们实际的采购订单到离岸价交货周期通常为 8-12周，因为它包含了打样、面料审批、批量生产和最终 AQL 检验。不切实际的交货时间在采购领域很常见。"
+        "question": "Why do factories quote 8 weeks but delivery actually takes 12?",
+        "answer": "Many quotes cover bulk production only — excluding sampling, Pantone revisions, export documentation, inspection and shipping preparation. Our realistic purchase-order-to-FOB cycle is usually 8–12 weeks because it includes sampling, fabric approval, bulk production and final AQL inspection. Unrealistic timelines are common in sourcing."
       },
       {
-        "question": "如果采用库存面料而非冷启动生产，第二季实际的补货提前期是多少？",
-        "answer": "如果面料已备好且图案已获批准，重新订购的交货周期约为 25-35天。如果是需要全新面料采购和颜色匹配的冷启动重新订购，则交货周期接近 8-10周。备好面料有助于 Shopify 品牌保持产品上架进度，避免出现色差。"
+        "question": "What is the realistic reorder lead time for season two with stock fabric versus a cold start?",
+        "answer": "If fabric is reserved and the pattern approved, reorder lead time is about 25–35 days. A cold-start reorder with new fabric sourcing and color matching runs closer to 8–10 weeks. Reserved fabric keeps Shopify brands on shelf and avoids color variance."
       },
       {
-        "question": "如果我八月份下单，可以享受节假日送货服务吗？",
-        "answer": "如果选择海运，黑色星期五或节假日期间的送货时间通常最晚在7月底或8月中旬，具体取决于目的地。之后可能需要空运，这将增加成本。我们会根据您的销售日期倒推生产和运输时间，而不是给出笼统的承诺。"
+        "question": "If I order in August, can I still get delivery for the holiday season?",
+        "answer": "By sea freight, Black Friday or holiday delivery usually requires ordering by late July to mid-August, depending on the destination. After that, air freight may be needed, which raises costs. We work backwards from your sell dates to plan production and shipping, rather than making vague promises."
       },
       {
-        "question": "你们会为重复订单预留面料吗？这会对发货速度产生什么影响？",
-        "answer": "是的，符合条件的大宗订单可以享受这项服务。使用同一染缸可以减少补货次数，降低色差风险。对于1000件以上的订单，我们可以免费为您保留面料一段时间，更长时间的保留则需具体情况具体商议。"
+        "question": "Do you reserve fabric for repeat orders? How does that affect shipping speed?",
+        "answer": "Yes, for qualifying bulk orders. Using the same dye lot reduces restock rounds and color variance risk. For orders above 1,000 pieces we can reserve fabric free of charge for a period; longer reservations are negotiable case by case."
       }
     ]
   },
   {
     "number": "10",
-    "title": "质量真相",
-    "description": "为什么运动服容易起球、防蹲透、褪色、logo不耐用？",
+    "title": "Quality Truths",
+    "description": "Why activewear pills, goes see-through, fades, or loses logos.",
     "items": [
       {
-        "question": "为什么运动服容易起球？如何防止生产过程中出现这种情况？",
-        "answer": "起球现象源于短纤维、纱线质量差、后整理工艺不佳以及磨损。我们通过选用长绒纱线、热定型、严格控制后整理工艺以及批量生产前的摩擦测试来减少起球现象。如需了解完整的工厂说明，请参阅“运动服起球的原因”。"
+        "question": "Why does activewear pill, and how do you prevent it in production?",
+        "answer": "Pilling comes from short fibers, poor yarn quality, weak finishing and abrasion. We reduce pilling by choosing long-staple yarns, heat setting, tight finishing control and abrasion testing before bulk production. See 'What Causes Pilling in Activewear' for the full factory explanation."
       },
       {
-        "question": "是什么让紧身裤防蹲穿——是面料、针织密度还是剪裁？",
-        "answer": "这三点都很重要。防蹲穿的紧身裤通常需要足够的克重、紧密的针织密度以及能够保护臀部在拉伸状态下的图案布局。我们默认的优质面料克重范围为 230-280克/平方米，并在批量生产前进行日光蹲姿测试。请参阅紧身裤面料克重指南。"
+        "question": "What makes leggings squat-proof — fabric, knit density or pattern?",
+        "answer": "All three matter. Squat-proof leggings need adequate GSM, tight knit density and a pattern layout that protects the glutes under stretch. Our default premium fabric range is 230–280 g/m², and we run daylight squat tests before bulk production. See the leggings fabric GSM guide."
       },
       {
-        "question": "为什么我的重新订购版本看起来和第一季略有不同？",
-        "answer": "通常情况下，颜色会存在偏差。除非工厂对染缸进行密封处理，保存已批准的色卡并进行日光复检，否则每个染缸的颜色都可能有所不同。我们会保存色卡，对于较大订单，我们会预留面料，以确保重新订购的颜色一致。请参阅潘通配色工作流程。"
+        "question": "Why does my reorder look slightly different from season one?",
+        "answer": "Usually it is color variance. Unless a factory seals dye lots, keeps approved swatches and re-checks in daylight, every dye lot can shift slightly. We keep approved swatches and, for larger orders, reserve fabric to keep reorders color-consistent. See the Pantone color workflow."
       },
       {
-        "question": "硅胶3D标志、热转印标志和刺绣标志的使用寿命分别是多少？",
-        "answer": "硅胶3D是弹性区域的最佳选择，如果固化得当，可经受反复洗涤。热转印对于胶囊来说成本较低，但边缘容易脱落。刺绣在稳定性好的面料上持久性最佳，但在高弹性区域容易起皱。我们会根据面料、弹性和位置选择合适的工艺。"
+        "question": "How long do 3D silicone, heat transfer and embroidered logos last?",
+        "answer": "3D silicone is the best choice for stretch zones and survives repeated washes when cured properly. Heat transfer is cheaper for capsules but edges can lift over time. Embroidery lasts best on stable fabrics but can pucker on high-stretch zones. We match the method to fabric, stretch and placement."
       },
       {
-        "question": "230克/平方米和280克/平方米的紧身裤在性能上有什么区别？",
-        "answer": "230克/平方米的面料感觉更轻盈凉爽，适合高温瑜伽和高强度运动训练。280克/平方米的面料则更具压缩性，遮光性也更好。较重的面料用料更多，因此价格也更高，但可以提升穿着者的感知品质。"
+        "question": "What is the performance difference between 230 g/m² and 280 g/m² leggings?",
+        "answer": "230 g/m² feels lighter and cooler, suited to hot yoga and high-intensity training. 280 g/m² offers more compression and better opacity. Heavier fabric uses more material and costs more, but it raises perceived quality for the wearer."
       },
       {
-        "question": "为什么有些运动内衣在高强度训练中会向上滑？",
-        "answer": "通常情况下，胸罩的下围太窄，肩带的几何形状导致肩带向对角线拉伸，或者胸罩面料的弹性大于下围。高强度运动文胸需要加固的下围、匹配的弹性比例，并且需要进行运动时的贴合度测试，而不仅仅是静态的人体模型试穿。"
+        "question": "Why do some sports bras ride up during high-impact training?",
+        "answer": "Usually the underband is too narrow, strap geometry pulls diagonally, or the cup fabric stretches more than the band. High-impact sports bras need a reinforced underband, matched elastic ratios and movement-based fit testing — not just static mannequin fitting."
       },
       {
-        "question": "什么是骆驼趾？裤裆设计如何防止骆驼趾的发生？",
-        "answer": "骆驼趾是指前缝线在拉伸时明显受压造成的现象。采用弧形裆部设计、错位缝线或平锁结构可以将压力从前中心线分散开来。参见“前缝线可见性和裆部设计”。"
+        "question": "What is camel toe, and how does gusset design prevent it?",
+        "answer": "Camel toe is the visible pressure on the front seam under stretch. Curved gussets, offset seams or flat-lock construction shift pressure away from the front center line. See 'Front Seam Visibility and Gusset Design'."
       },
       {
-        "question": "为什么劣质高腰紧身裤的腰带会下滑？",
-        "answer": "腰带通常缺乏足够的弹性宽度、内部加固或合适的裆部到臀部的过渡设计。我们的高腰款式采用更宽的腰带，并经过模特运动测试，确保腰带在瑜伽、高强度间歇训练和日常穿着中都能保持贴合。"
+        "question": "Why do waistbands roll down on cheap high-waist leggings?",
+        "answer": "Waistbands usually lack adequate elastic width, internal reinforcement or the right rise-to-hip transition. Our high-waist styles use wider waistbands and are movement-tested on models to stay put through yoga, HIIT and all-day wear."
       }
     ]
   },
   {
     "number": "11",
-    "title": "面料及材质详情",
-    "description": "94/6 聚酰胺，裸感与黄油般柔软，四向弹力，再生面料。",
+    "title": "Fabric & Material Details",
+    "description": "94/6 polyamide, naked-feel vs buttery-soft, four-way stretch, recycled fabrics.",
     "items": [
       {
-        "question": "什么是 94/6 聚酰胺-弹性纤维？为什么它是高级规格？",
-        "answer": "这意味着面料成分为94%聚酰胺和6%氨纶。聚酰胺赋予面料柔软的手感、良好的回弹性和吸湿排汗性能，而氨纶则提供弹性。这是我们默认的优质无缝面料配方，我们也提供其他比例的面料，以满足您对压缩性和弹性的需求。"
+        "question": "What is 94/6 polyamide-elastane, and why is it a premium spec?",
+        "answer": "It means 94% polyamide and 6% elastane. Polyamide gives a soft hand feel, good recovery and moisture management, while elastane provides stretch. It is our default premium seamless formulation, and we offer other ratios to meet your compression and stretch requirements."
       },
       {
-        "question": "裸感面料和如黄油般柔软的面料有什么区别？",
-        "answer": "裸感面料光滑、凉爽，如同第二层肌肤，通常采用高支数聚酰胺-弹性纤维混纺面料，并经过压光处理。如黄油般柔软的面料则经过拉绒或桃皮绒处理，通常更适合运动休闲穿着。我们会根据训练、瑜伽或休闲等不同用途选择合适的面料。"
+        "question": "What is the difference between naked-feel and buttery-soft fabrics?",
+        "answer": "Naked-feel fabric is smooth and cool, like a second skin — usually a high-gauge polyamide-elastane blend with a calendered finish. Buttery-soft fabric is brushed or peached, and usually better for athleisure. We select fabrics by end use: training, yoga or casual."
       },
       {
-        "question": "四向拉伸和双向拉伸有什么区别？",
-        "answer": "双向弹力面料主要沿一个方向拉伸；四向弹力面料则横向和纵向均可拉伸。紧身裤、运动文胸和连体衣需要四向弹力面料才能活动自如。宽松的连帽衫或短裤有时可以使用双向弹力面料。"
+        "question": "What is the difference between four-way and two-way stretch?",
+        "answer": "Two-way stretch fabrics stretch mainly in one direction; four-way stretch fabrics stretch both horizontally and vertically. Leggings, sports bras and unitards need four-way stretch for freedom of movement. Loose hoodies or shorts can sometimes use two-way stretch."
       },
       {
-        "question": "你们能否采购到带有rPET或ECONYL标识且获得GRS认证的再生面料？",
-        "answer": "是的。rPET 供应充足，ECONYL 也可用于部分尼龙项目。每笔订单均可提供 GRS产销监管链文件。再生面料项目的最低起订量和成本通常高于原生面料；请参阅“可持续运动服制造商”部分。"
+        "question": "Can you source recycled fabrics with rPET or ECONYL and GRS certification?",
+        "answer": "Yes. rPET is readily available, and ECONYL can be used for certain nylon programs. GRS chain-of-custody documentation is available for every order. Recycled fabric programs usually carry higher MOQs and costs than virgin fabrics — see the sustainable activewear manufacturer section."
       },
       {
-        "question": "高温瑜伽和低温训练分别适合哪些面料？",
-        "answer": "高温瑜伽需要轻薄、速干、吸湿排汗的面料，克重在180-220克/平方米左右。寒冷天气下的训练则需要较厚实的拉绒或保暖面料，克重在260-310克/平方米左右。棉混纺面料舒适，但干燥速度太慢，不适合高强度训练。"
+        "question": "Which fabrics suit hot yoga versus cold-weather training?",
+        "answer": "Hot yoga needs lightweight, quick-dry, moisture-wicking fabric around 180–220 g/m². Cold-weather training needs heavier brushed or thermal fabrics around 260–310 g/m². Cotton blends are comfortable but dry too slowly for high-intensity training."
       },
       {
-        "question": "慢跑裤的拉绒面料和非拉绒面料有什么区别？",
-        "answer": "拉绒抓绒面料内层柔软，能有效锁住热量。未拉绒的毛圈布则更轻盈、顺滑、透气性更好。高档冬季运动裤通常采用较厚实的拉绒法兰绒面料，而换季运动裤则更适合采用未拉绒的毛圈布。"
+        "question": "What is the difference between brushed and unbrushed fleece for joggers?",
+        "answer": "Brushed fleece has a soft inner face that traps heat. Unbrushed terry is lighter, smoother and more breathable. Premium winter sweats usually use a heavier brushed fleece, while transitional joggers suit unbrushed terry."
       }
     ]
   },
   {
     "number": "12",
-    "title": "尺码和西式版型",
-    "description": "真正的2XL/3XL，Santoni筒状尺寸，美国/英国/欧盟/澳大利亚尺码，版型调整。",
+    "title": "Sizing & Western Fits",
+    "description": "True 2XL/3XL, Santoni cylinder sizes, US/UK/EU/AU sizing, fit adjustments.",
     "items": [
       {
-        "question": "你们能生产真正意义上的西式2XL和3XL无缝服装吗？",
-        "answer": "是的。我们义乌无缝服装工厂配备了17-21英寸的大型桑托尼滚筒机，可以生产更宽的人体曲线无缝裁片，真正实现西式2XL/3XL尺码。许多使用13-15英寸滚筒的工厂，尺码通常只到XL。"
+        "question": "Can you produce truly Western-sized 2XL and 3XL seamless garments?",
+        "answer": "Yes. Our Yiwu seamless factory runs large Santoni machines with 17–21 inch cylinders, producing wider body-shape seamless panels for true Western 2XL/3XL sizing. Many factories using 13–15 inch cylinders effectively top out at XL."
       },
       {
-        "question": "为什么很多中国工厂悄悄地将无缝服装的尺寸上限设为L或XL？",
-        "answer": "这是机器经济效益的问题。小号气瓶价格更低，适用于常见的亚洲尺码和西方尺码（XS-L）。大号气瓶成本更高，只有那些需要大量生产涵盖所有西方尺码的服装的工厂才划算。"
+        "question": "Why do many Chinese factories quietly cap seamless sizes at L or XL?",
+        "answer": "It is machine economics. Small cylinders are cheaper and cover common Asian and Western sizes (XS–L). Large cylinders cost more and only pay off for factories producing full Western size runs at volume."
       },
       {
-        "question": "什么是 Santoni大缸体机器？为什么尺寸很重要？",
-        "answer": "Santoni是领先的无缝圆筒针织机品牌。筒管直径控制着最大筒状针织物的宽度，并影响人体塑形。更大的筒管可以实现更大的尺码，并能更灵活地进行区域性压缩。"
+        "question": "What are Santoni large-cylinder machines, and why does cylinder size matter?",
+        "answer": "Santoni is the leading brand of seamless circular knitting machines. Cylinder diameter controls the maximum tube width and shapes body mapping. Larger cylinders enable larger sizes and more flexible zoned compression."
       },
       {
-        "question": "你们的纸样中，美国、英国、欧盟和澳大利亚的尺码有何不同？",
-        "answer": "我们以美国尺码为基准，然后根据市场进行调整。英国和澳大利亚的尺码通常较大，而欧盟尺码则往往略微修身。对于全球品牌，我们建议采用一种基准尺码标准，并搭配区域尺码标签。"
+        "question": "How do US, UK, EU and AU sizes differ in your patterns?",
+        "answer": "We grade on a US base block and adjust per market. UK and AU sizes typically run larger, while EU grading is often slightly slimmer. For global brands we recommend one base grading standard with regional size labels."
       },
       {
-        "question": "你能调整标准裤型的裆部高度、腰围或裆部吗？",
-        "answer": "是的。裤裆高度、腰围和裆部形状都是打样过程中常见的调整。大幅修改需要单独报价，但合身度调整是正常开发流程的一部分，您的定制版型不会重复用于其他客户。"
+        "question": "Can you adjust rise, waistband or gusset on a standard legging pattern?",
+        "answer": "Yes. Rise height, waistband and gusset shape are all common adjustments during sampling. Major redesigns are quoted separately, but fit adjustments are part of normal development, and your custom pattern is never reused for other clients."
       },
       {
-        "question": "你们提供娇小款或高挑款的图案吗？",
-        "answer": "是的，适用于紧身裤、连体裤和部分连体衣。娇小款会缩短裤长和衣身长度；高挑款则会在需要的地方增加裤长和裆部长度。为了控制最小起订量，大多数新兴品牌都会先推出常规款，然后再推出一个优先考虑的版型。"
+        "question": "Do you offer petite or tall patterns?",
+        "answer": "Yes, for leggings, jumpsuits and some unitards. Petite grading shortens inseam and body lengths; tall grading adds length at the inseam and rise where needed. To keep MOQs manageable, most emerging brands launch a regular fit first and add one priority fit later."
       }
     ]
   },
   {
     "number": "13",
-    "title": "比较问题",
-    "description": "中国 vs 越南 vs 孟加拉国，OEM vs ODM，贸易商 vs 直接销售，品牌质量等级。",
+    "title": "Comparison Questions",
+    "description": "China vs Vietnam vs Bangladesh, OEM vs ODM, trader vs direct, brand quality tiers.",
     "items": [
       {
-        "question": "中国、越南和孟加拉国—哪个国家更适合进军美国市场的Shopify运动服品牌？",
-        "answer": "对于小批量到中等批量的优质运动服，中国通常在面料种类、生产速度和技术能力方面拥有最强的综合优势。越南可以为对关税敏感的项目提供帮助，而孟加拉国则在大批量基础款服装方面最具优势。参见中国、越南和孟加拉国对比分析。"
+        "question": "China, Vietnam or Bangladesh — which is better for a Shopify activewear brand selling into the US?",
+        "answer": "For small-to-mid volume premium activewear, China usually offers the strongest overall combination of fabric variety, speed and technical capability. Vietnam can help for tariff-sensitive programs, and Bangladesh wins on high-volume basics. See the China vs Vietnam vs Bangladesh comparison."
       },
       {
-        "question": "OEM 与 ODM——对于小品牌来说，实际区别是什么？",
-        "answer": "OEM是指您提供设计并拥有图案版权。ODM是指您选择工厂开发的款式并贴上自己的品牌。ODM更适合快速进行初步测试；OEM则有助于在多个季度后建立更强大的品牌差异化优势。我们支持这两种模式。"
+        "question": "OEM vs ODM — what is the practical difference for a small brand?",
+        "answer": "OEM means you supply the design and own the pattern. ODM means you select factory-developed styles and brand them. ODM is better for fast early testing; OEM builds stronger brand differentiation over multiple seasons. We support both."
       },
       {
-        "question": "我应该与贸易公司合作还是直接与工厂合作？",
-        "answer": "贸易公司简化了早期采购流程，但增加了利润和沟通环节。一旦质量稳定性、补货速度和单位经济效益变得至关重要，直接与工厂建立合作关系就显得更为合理。YOMEGA 直接与工厂合作，不涉及贸易商加价。"
+        "question": "Should I work with a trading company or directly with a factory?",
+        "answer": "Trading companies simplify early sourcing but add margin and communication layers. Once quality consistency, restock speed and unit economics matter, a direct factory relationship makes more sense. YOMEGA works factory-direct with no trader markup."
       },
       {
-        "question": "Alo、Vuori 或 DFYNE 的质量水平——你能达到那个水平吗？",
-        "answer": "对于结构、面料手感、无缝人体工学设计和AQL 2.5质量控制，我们完全可以满足自有品牌项目的需求。来自全球顶级品牌的专有企业面料需要更大的研发预算，但大多数高端品牌的需求以我们的规模都能实现。"
+        "question": "Alo, Vuori or DFYNE quality levels — can you match that?",
+        "answer": "For construction, fabric hand feel, seamless body mapping and AQL 2.5 quality control, yes — we serve private-label programs at that level. Proprietary corporate fabrics from global tier-one brands require larger R&D budgets, but most premium brand requirements are achievable at our scale."
       },
       {
-        "question": "现货面料加定制logo vs 全定制OEM——哪种方案更合理？",
-        "answer": "对于首批100-300套胶囊系列产品，通常使用库存面料加logo更为明智。这样可以缩短交货时间、降低成本，并避免定制染色最低起订量。待产品市场契合度验证后，再考虑全面定制OEM。"
+        "question": "Stock fabric plus custom logo vs full custom OEM — which makes sense?",
+        "answer": "For a first capsule of 100–300 sets, stock fabric with your logo is usually the smarter route: faster lead time, lower cost and no custom-dye MOQs. Move to full custom OEM after product-market fit is proven."
       }
     ]
   },
   {
     "number": "14",
-    "title": "可持续发展与2026年合规性",
-    "description": "不含 PFAS,rPET,GRS 认证，可生物降解，符合欧盟绿色声明指令。",
+    "title": "Sustainability & 2026 Compliance",
+    "description": "PFAS-free, rPET, GRS certification, biodegradable claims, EU Green Claims Directive.",
     "items": [
       {
-        "question": "什么是不含 PFAS 的产品？为什么加州要求在2026年之前实现这一目标？",
-        "answer": "PFAS 是一些用于防水整理剂的持久性化学物质。加利福尼亚州和其他美国州的服装法规要求，向这些市场销售面料的品牌需要提供不含PFAS 的证明文件。如有需要，我们可以安排第三方实验室检测。"
+        "question": "What is PFAS-free, and why is California requiring it by 2026?",
+        "answer": "PFAS are persistent chemicals used in some water-repellent finishes. Apparel regulations in California and other US states require brands selling into these markets to provide PFAS-free documentation for fabrics. We can arrange third-party lab testing where needed."
       },
       {
-        "question": "对于运动服而言，再生涤纶真的比原生涤纶更好吗？",
-        "answer": "rPET（再生聚对苯二甲酸乙二醇酯）减少了原生塑料的使用和生产能耗，同时在许多运动服应用中性能与聚酯纤维相近。虽然它并非完美的环保解决方案，因为微塑料问题依然存在，但经GRS溯源后，其环保性能显著优于原生聚酯纤维。"
+        "question": "Is recycled polyester actually better than virgin polyester for activewear?",
+        "answer": "rPET (recycled polyethylene terephthalate) reduces virgin plastic use and production energy while performing comparably to polyester in many activewear applications. It is not a perfect sustainability solution — microplastic shedding remains — but with GRS traceability it is a significant improvement over virgin polyester."
       },
       {
-        "question": "什么是GRS认证？如何验证监管链？",
-        "answer": "GRS负责验证再生材料的成分和从源头到成品的监管链。请索取证书编号和批次文件，然后查询注册信息。仅凭缺乏批次追溯信息的通用再生材料声明是不够的。"
+        "question": "What is GRS certification, and how do I verify the chain of custody?",
+        "answer": "GRS verifies recycled content and the chain of custody from source to finished product. Ask for the certificate number and lot documentation, then verify it in the registry. Generic recycled-content claims without lot traceability are not sufficient."
       },
       {
-        "question": "生物降解运动服的说法是真的还是“绿色营销”？",
-        "answer": "到2026年，合成弹力运动服大多仍将充斥着“绿色洗涤”的噱头。真正可生物降解的功能性面料仍然有限。如果供应商声称其产品为可生物降解的涤纶-氨纶混纺面料，请务必索取第三方生物降解测试报告和认证机构的证明。"
+        "question": "Are biodegradable activewear claims real or greenwashing?",
+        "answer": "As of 2026, most synthetic stretch activewear claiming biodegradability is still mostly greenwashing. Truly biodegradable performance fabrics remain limited. If a supplier claims a biodegradable polyester-spandex blend, ask for third-party biodegradation test reports and certification body documentation."
       },
       {
-        "question": "我如何才能避免违反欧盟绿色声明指令中的“漂绿”行为？",
-        "answer": "只做具体、可验证的声明：例如回收成分比例、组成成分、证书和批次。除非有证据支持，否则请避免使用“环保”等模糊词语。我们会提供相关文件，确保您的产品页面声明与面料的实际性能相符。"
+        "question": "How do I avoid greenwashing under the EU Green Claims Directive?",
+        "answer": "Make only specific, verifiable claims: recycled content percentages, compositions, certificates and lots. Avoid vague words like 'eco-friendly' unless evidence supports them. We provide documentation so your product-page claims match the actual fabric."
       }
     ]
   },
   {
     "number": "15",
-    "title": "品牌阶段与规模化决策",
-    "description": "首批胶囊产品最小起订量、何时更换供应商、潘通色卡配色时间、规模扩大至8,000件。",
+    "title": "Brand Stages & Scaling Decisions",
+    "description": "First-capsule MOQs, when to switch suppliers, Pantone timing, scaling to 8,000 pieces.",
     "items": [
       {
-        "question": "我是第一次创业——我应该从100套还是500 套开始？",
-        "answer": "除非您已有确凿的市场需求，否则建议先从 100 套样品开始。100 套的样品系列可以让您在真实买家面前测试版型、面料和配色方案，同时也能确保出错时可以及时补救。请参阅低起订量运动服 OEM 服务。"
+        "question": "I am launching my first brand — should I start with 100 sets or 500?",
+        "answer": "Unless you have proven demand, start with a 100-set capsule. A 100-set capsule lets you test fit, fabric and colorways against real buyers while keeping mistakes recoverable. See our low-MOQ activewear OEM service."
       },
       {
-        "question": "我应该何时从贸易商转向像 YOMEGA 这样的直接工厂？",
-        "answer": "当年销量、质量稳定性和补货速度比贸易商的便利性更重要时，就应该更换供应商。预警信号包括：面料信息含糊不清、工厂参观受阻、颜色偏差以及补货缓慢。大多数客户会在第二或第三季更换供应商。"
+        "question": "When should I switch from a trading company to a direct factory like YOMEGA?",
+        "answer": "Switch when annual volume, quality consistency and restock speed matter more than a trader's convenience. Warning signs include vague fabric information, blocked factory visits, color variance and slow reorders. Most clients switch in their second or third season."
       },
       {
-        "question": "我如何知道我的工厂能在第三季之前将产能扩大到 8000件？",
-        "answer": "询问具体的规模化参考案例、品类产能、客户团队的稳定性以及500件和5000件的补货周期。含糊其辞的回答意味着您可能很快就会超出工厂的产能。"
+        "question": "How do I know my factory can scale to 8,000 pieces by season three?",
+        "answer": "Ask for specific scaling references, category capacity, client-team stability and reorder lead times at 500 versus 5,000 pieces. Vague answers mean you will likely outgrow the factory sooner than expected."
       },
       {
-        "question": "第一季我应该锁定自定义 Pantone 色号，还是从默认颜色开始？",
-        "answer": "先从库存颜色开始，直到每款每色能达到300-500件的产量。等到第二季产量达到一定规模，足以支付染缸费用，并且确定了最畅销的颜色之后，再考虑定制 Pantone色号。请参阅Pantone 配色工作流程。"
+        "question": "Should I commit to custom Pantone colors in season one, or start from stock colors?",
+        "answer": "Start from stock colors until you can move 300–500 pieces per style per color. Move to custom Pantone colors in season two, once volume justifies the dye lots and you know your best sellers. See the Pantone color workflow."
       }
     ]
   }

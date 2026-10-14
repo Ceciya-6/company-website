@@ -26,7 +26,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 export function FaqExplorer() {
   const [query, setQuery] = useState("");
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const normalizedQuery = query.trim().toLocaleLowerCase();
 
   const filteredCategories = useMemo(
@@ -70,12 +70,6 @@ export function FaqExplorer() {
           <p className="mt-7 max-w-3xl text-lg leading-8 text-brand-muted sm:text-xl sm:leading-9">
             {t("faq.subtitle")}
           </p>
-          {lang === "en" && t("faq.contentNote") && (
-            <p className="mt-4 max-w-3xl border border-brand-border bg-brand-card px-4 py-3 text-sm leading-6 text-brand-muted">
-              {t("faq.contentNote")}
-            </p>
-          )}
-
           <div className="mt-10 flex max-w-4xl border border-brand-border bg-white focus-within:border-brand-primary sm:mt-12">
             <span className="flex w-14 shrink-0 items-center justify-center text-brand-muted sm:w-16">
               <MagnifyingGlass aria-hidden="true" size={23} />
