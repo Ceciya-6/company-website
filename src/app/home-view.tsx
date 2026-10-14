@@ -32,7 +32,7 @@ export function HomeView({ products }: { products: Product[] }) {
   ];
 
   const featured = products.filter((product) => product.featured);
-  const displayProducts = (featured.length > 0 ? featured : products).slice(0, 6);
+  const displayProducts = (featured.length > 0 ? featured : products).slice(0, 12);
 
   return (
     <main className="overflow-hidden bg-brand-secondary">
