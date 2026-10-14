@@ -1,7 +1,8 @@
-import { Product, ProductStatus, getProduct, products as fallbackProducts } from "./products";
+import { Product, ProductColor, ProductStatus, getProduct, products as fallbackProducts } from "./products";
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID ?? "app1kcgOwrIxM7bip";
 const TABLE_ID = process.env.AIRTABLE_PRODUCTS_TABLE ?? "Products";
+const COLOR_FIELD = "Color Images";
 
 export const PRODUCTS_CACHE_TAG = "products";
 
@@ -39,6 +40,26 @@ const text = (value: unknown) => (typeof value === "string" ? value.trim() : "")
 const num = (value: unknown) =>
   typeof value === "number" && Number.isFinite(value) ? value : 0;
 
+type AirtableAttachment = { id?: string; url?: string; filename?: string };
+
+/** 解析 Airtable 附件字段为 SKU 颜色；颜色名取文件名（去扩展名）。 */
+function mapColorVariants(value: unknown): ProductColor[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const colors = value
+    .map((item): ProductColor | null => {
+      const attachment = item as AirtableAttachment;
+      if (!attachment.id || !attachment.url) return null;
+      const filename = attachment.filename ?? "";
+      return {
+        id: attachment.id,
+        name: filename.replace(/\.[^.]+$/, "") || filename,
+        image: attachment.url,
+      };
+    })
+    .filter((item): item is ProductColor => item !== null);
+  return colors.length > 0 ? colors : undefined;
+}
+
 export function mapRecord(record: AirtableRecord): Product {
   const fields = record.fields;
   const status = text(fields["Status"]) || "active";
@@ -65,6 +86,7 @@ export function mapRecord(record: AirtableRecord): Product {
     status: status as ProductStatus,
     featured: Boolean(fields["Featured"]),
     sort: num(fields["Sort"]),
+    colorVariants: mapColorVariants(fields[COLOR_FIELD]),
   };
 }
 
@@ -224,4 +246,73 @@ export async function updateProduct(recordId: string, patch: Partial<Product>) {
 export async function deleteProduct(recordId: string) {
   // Airtable 要求 records[] 数组格式，records=id 会报 INVALID_RECORDS。
   await airtableRequest(`?records%5B%5D=${encodeURIComponent(recordId)}`, { method: "DELETE" });
+}
+
+/** 读取单条记录的 Color Images 附件列表。 */
+async function listColorAttachments(recordId: string): Promise<AirtableAttachment[]> {
+  const data = await airtableRequest(`/${encodeURIComponent(recordId)}`);
+  const record = (data as { fields?: Record<string, unknown> }).fields;
+  const value = record?.[COLOR_FIELD];
+  return Array.isArray(value) ? (value as AirtableAttachment[]) : [];
+}
+
+/**
+ * 上传一张 SKU 颜色图：写入 Airtable 附件字段（自动追加）。
+ * 颜色名 = 文件名（去扩展名），所以这里用「颜色名.扩展名」作为上传文件名。
+ * Airtable uploadAttachment 上限约 5MB base64，调用方需先限制文件大小。
+ */
+export async function uploadColorImage(
+  recordId: string,
+  name: string,
+  base64: string,
+  contentType: string,
+  ext: string,
+): Promise<Product> {
+  const token = process.env.AIRTABLE_TOKEN;
+  if (!token) throw new Error("AIRTABLE_TOKEN is not configured.");
+  const filename = `${name}${ext}`;
+  const response = await fetch(
+    `https://content.airtable.com/v0/${BASE_ID}/${encodeURIComponent(recordId)}/${encodeURIComponent(COLOR_FIELD)}/uploadAttachment`,
+    {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contentType, file: base64, filename }),
+    },
+  );
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(`Airtable ${response.status}: ${JSON.stringify(payload).slice(0, 300)}`);
+  }
+  // uploadAttachment 响应的 fields 以字段 ID 为键，统一回读标准记录格式再映射。
+  const reread = await airtableRequest(`/${encodeURIComponent(recordId)}`);
+  const record = (reread as AirtableRecord).id
+    ? (reread as AirtableRecord)
+    : null;
+  if (!record) throw new Error("Airtable did not return a record.");
+  return mapRecord(record);
+}
+
+/** 删除一张 SKU 颜色图：PATCH 保留其余附件。 */
+export async function deleteColorImage(recordId: string, attachmentId: string): Promise<Product> {
+  const remaining = (await listColorAttachments(recordId)).filter(
+    (item) => item.id && item.id !== attachmentId,
+  );
+  const data = await airtableRequest("", {
+    method: "PATCH",
+    body: JSON.stringify({
+      records: [
+        {
+          id: recordId,
+          fields: { [COLOR_FIELD]: remaining.map((item) => ({ id: item.id })) },
+        },
+      ],
+    }),
+  });
+  const [record] = data.records ?? [];
+  if (!record) throw new Error("Airtable did not return a record.");
+  return mapRecord(record);
 }

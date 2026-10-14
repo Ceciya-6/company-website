@@ -51,6 +51,30 @@ export function ProductDetailView({ product }: { product: Product }) {
               ))}
             </ul>
 
+            {product.colorVariants && product.colorVariants.length > 0 ? (
+              <div className="mt-6">
+                <h2 className="text-sm font-bold tracking-[0.14em] text-brand-primary uppercase">
+                  {t("detail.colorsTitle")}
+                </h2>
+                <ul className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4">
+                  {product.colorVariants.map((color) => (
+                    <li key={color.id} className="min-w-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={color.image}
+                        alt={`${product.name} · ${color.name}`}
+                        loading="lazy"
+                        className="aspect-square w-full border border-brand-border bg-white object-cover"
+                      />
+                      <p className="mt-1.5 truncate text-center text-xs leading-5 text-brand-muted">
+                        {color.name}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
             {specs.length > 0 ? (
               <dl className="mt-6 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
                 {specs.map(([label, value]) => (

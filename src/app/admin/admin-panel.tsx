@@ -2,6 +2,8 @@
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 
+type ProductColor = { id: string; name: string; image: string };
+
 type ProductInput = {
   recordId?: string;
   slug: string;
@@ -22,6 +24,7 @@ type ProductInput = {
   status: string;
   featured: boolean;
   sort: string;
+  colorVariants: ProductColor[];
 };
 
 type ProductRow = ProductInput & { sort: number };
@@ -45,6 +48,7 @@ const EMPTY_FORM: ProductInput = {
   status: "active",
   featured: false,
   sort: "0",
+  colorVariants: [],
 };
 
 const TEXT_FIELDS: { key: keyof ProductInput; label: string; hint?: string }[] = [
@@ -112,6 +116,9 @@ export function AdminPanel() {
   const [notice, setNotice] = useState("");
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState<ProductInput | null>(null);
+  const [colorName, setColorName] = useState("");
+  const [colorFile, setColorFile] = useState<File | null>(null);
+  const [colorBusy, setColorBusy] = useState(false);
 
   const api = useCallback(
     async (path: string, init: RequestInit = {}) => {
@@ -143,6 +150,7 @@ export function AdminPanel() {
           highlights: Array.isArray(product.highlights)
             ? (product.highlights as string[]).join("\n")
             : String(product.highlights ?? ""),
+          colorVariants: Array.isArray(product.colorVariants) ? product.colorVariants : [],
         })) as ProductRow[],
       );
       setSource(data.source ?? "airtable");
@@ -212,6 +220,67 @@ export function AdminPanel() {
       setNotice(error instanceof Error ? error.message : "删除失败。");
     } finally {
       setLoading(false);
+    }
+  };
+
+  /** 颜色图走 multipart，不能用统一 JSON 的 api()。 */
+  const colorRequest = async (path: string, init: RequestInit = {}) => {
+    const response = await fetch(path, {
+      ...init,
+      headers: { "x-admin-token": token, ...init.headers },
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || data.ok === false) {
+      throw new Error(data.message || `请求失败（${response.status}）`);
+    }
+    return data as { product: { colorVariants?: ProductColor[] } };
+  };
+
+  const syncEditingColors = (colorVariants: ProductColor[] | undefined) => {
+    setEditing((current) => (current ? { ...current, colorVariants: colorVariants ?? [] } : current));
+  };
+
+  const uploadColor = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!editing?.recordId || !colorFile) return;
+    setColorBusy(true);
+    setNotice("");
+    try {
+      const formData = new FormData();
+      formData.set("name", colorName.trim());
+      formData.set("file", colorFile);
+      const data = await colorRequest(`/api/products/${editing.recordId}/colors`, {
+        method: "POST",
+        body: formData,
+      });
+      syncEditingColors(data.product.colorVariants);
+      setColorName("");
+      setColorFile(null);
+      setNotice("颜色已上传，详情页已同步刷新。");
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "上传失败。");
+    } finally {
+      setColorBusy(false);
+    }
+  };
+
+  const removeColor = async (color: ProductColor) => {
+    if (!editing?.recordId) return;
+    if (!window.confirm(`确定删除颜色「${color.name}」吗？`)) return;
+    setColorBusy(true);
+    setNotice("");
+    try {
+      const data = await colorRequest(`/api/products/${editing.recordId}/colors`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ attachmentId: color.id }),
+      });
+      syncEditingColors(data.product.colorVariants);
+      setNotice("颜色已删除，详情页已同步刷新。");
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "删除失败。");
+    } finally {
+      setColorBusy(false);
     }
   };
 
@@ -430,6 +499,81 @@ export function AdminPanel() {
                   />
                   在首页「主推产品」区块展示（不勾选则按排序取前 6 个在售商品）
                 </label>
+              </div>
+
+              <div className="mt-8 border border-brand-border bg-brand-card p-5 sm:p-6">
+                <h3 className="text-sm font-bold tracking-wide">SKU 颜色（详情页颜色展示）</h3>
+                <p className="mt-1 text-xs leading-5 text-brand-muted">
+                  颜色名即上传图片的文件名；支持 JPG / PNG / WebP / GIF，单张不超过 3.5MB。
+                </p>
+
+                {editing.recordId ? (
+                  <>
+                    {editing.colorVariants.length > 0 ? (
+                      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        {editing.colorVariants.map((color) => (
+                          <li
+                            key={color.id}
+                            className="flex items-center gap-3 border border-brand-border bg-white p-3"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={color.image}
+                              alt={color.name}
+                              className="size-14 shrink-0 border border-brand-border object-cover"
+                            />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-bold">{color.name}</p>
+                              <button
+                                type="button"
+                                onClick={() => removeColor(color)}
+                                disabled={colorBusy}
+                                className="mt-1 text-xs font-bold text-red-600 hover:text-red-700 disabled:opacity-50"
+                              >
+                                删除
+                              </button>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="mt-4 text-sm text-brand-muted">还没有颜色，先在下方添加。</p>
+                    )}
+
+                    <form onSubmit={uploadColor} className="mt-4 flex flex-wrap items-end gap-3">
+                      <label className="block w-40">
+                        <span className="text-xs font-bold tracking-wide">颜色名称</span>
+                        <input
+                          type="text"
+                          value={colorName}
+                          onChange={(event) => setColorName(event.target.value)}
+                          placeholder="如：高级黑"
+                          className={`mt-1 ${inputCls}`}
+                        />
+                      </label>
+                      <label className="block min-w-0 flex-1">
+                        <span className="text-xs font-bold tracking-wide">颜色图片</span>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp,image/gif"
+                          onChange={(event) => setColorFile(event.target.files?.[0] ?? null)}
+                          className="mt-1 block w-full text-sm file:mr-3 file:border-0 file:bg-brand-primary file:px-4 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-brand-accent"
+                        />
+                      </label>
+                      <button
+                        type="submit"
+                        disabled={colorBusy || !colorName.trim() || !colorFile}
+                        className="quote-cta disabled:opacity-50"
+                      >
+                        {colorBusy ? "上传中…" : "上传颜色"}
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <p className="mt-4 text-sm text-brand-muted">
+                    保存商品后，即可在这里上传 SKU 颜色图。
+                  </p>
+                )}
               </div>
 
               <div className="mt-8 flex gap-3">

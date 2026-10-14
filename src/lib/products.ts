@@ -1,5 +1,12 @@
 export type ProductStatus = "active" | "draft" | "archived";
 
+/** SKU 颜色：图片托管在 Airtable 附件字段，name 来自文件名（去扩展名）。 */
+export type ProductColor = {
+  id: string;
+  name: string;
+  image: string;
+};
+
 export type Product = {
   recordId?: string;
   slug: string;
@@ -8,6 +15,7 @@ export type Product = {
   image: string;
   alt: string;
   highlights: string[];
+  colorVariants?: ProductColor[];
   category?: string;
   fabric?: string;
   sizes?: string;

@@ -87,6 +87,7 @@ const zh = {
   detail: {
     back: "返回产品中心",
     eyebrow: "YOMEGA · OEM / ODM",
+    colorsTitle: "可选颜色",
     specFabric: "面料成分及克重",
     specSizes: "尺码",
     specColors: "颜色",
@@ -344,6 +345,7 @@ const en: typeof zh = {
   detail: {
     back: "Back to products",
     eyebrow: "YOMEGA · OEM / ODM",
+    colorsTitle: "Color Options",
     specFabric: "Fabric & GSM",
     specSizes: "Sizes",
     specColors: "Colors",
