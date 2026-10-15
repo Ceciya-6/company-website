@@ -59,13 +59,15 @@ export function ProductDetailView({ product }: { product: Product }) {
                 <ul className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4">
                   {product.colorVariants.map((color) => (
                     <li key={color.id} className="min-w-0">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={color.image}
-                        alt={`${product.name} · ${color.name}`}
-                        loading="lazy"
-                        className="aspect-square w-full border border-brand-border bg-white object-cover"
-                      />
+                      <div className="relative aspect-square overflow-hidden border border-brand-border bg-white">
+                        <Image
+                          src={color.image}
+                          alt={`${product.name} · ${color.name}`}
+                          fill
+                          sizes="(min-width: 640px) 25vw, 33vw"
+                          className="object-cover"
+                        />
+                      </div>
                       <p className="mt-1.5 truncate text-center text-xs leading-5 text-brand-muted">
                         {color.name}
                       </p>

@@ -5,6 +5,7 @@ export function HeroVideo() {
     <video
       className="absolute inset-0 h-full w-full object-cover object-center"
       src="/images/factory/index.mp4"
+      poster="/images/factory/poster.jpg"
       autoPlay
       muted
       loop
