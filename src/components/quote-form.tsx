@@ -80,6 +80,13 @@ export function QuoteForm({ productName = "", source = "contact" }: { productNam
       }
       setInquiryId(result.inquiryId || "");
       setSubmissionState("success");
+      // GA4 转化事件：只有成功拿到询盘 ID 才上报，避免把失败请求算成转化。
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", {
+          inquiry_id: result.inquiryId || "",
+          source_page: sourcePage,
+        });
+      }
     } catch (error) {
       setSubmissionMessage(error instanceof Error ? error.message : t("form.genericError"));
       setSubmissionState("error");

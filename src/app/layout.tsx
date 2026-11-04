@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { MobileQuoteButton } from "@/components/mobile-quote-button";
 import { I18nProvider } from "@/lib/i18n";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,6 +40,10 @@ export const metadata: Metadata = {
     shortcut: "/images/favicon.png",
     apple: "/images/favicon.png",
   },
+  // Google Search Console 的 HTML 标记验证，配置 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION 后自动输出。
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -51,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteFooter />
           <MobileQuoteButton />
         </I18nProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );
